@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<include file="struts-default.xml" />
+	 
+	<constant name="struts.devMode" value="true"/>
+	
+	<constant name="struts.enable.SlashesInActionNames" value="true"/> 
+	
+	<constant name="struts.mapper.class" value="org.apache.struts2.dispatcher.mapper.Restful2ActionMapper" />
+	
+	<package name="banda" extends="struts-default">
+		<interceptors>
+			<interceptor name="messagePresenterInterceptor" class="com.bandManager.interceptor.MessagePresenterInterceptor" />
+			<interceptor-stack name="default">
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="messagePresenterInterceptor"/>
+			</interceptor-stack>
+		</interceptors>
+		 		
+		 <action name="editarBanda/*" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
+			<result>jsp/banda-editar.jsp</result>
+			<interceptor-ref name="default"/>
+		 </action>
+		 
+		 <action name="editarLancamentos" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
+		 	<result>jsp/banda-lancamentos.jsp</result>
+		 </action>
+		 
+		 <action name="salvarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="salvar">
+			<result type="redirectAction">
+				<param name="actionName">editarLancamentos?banda.id=%{banda.id}</param>
+			</result>
+			<interceptor-ref name="default"/>
+		 </action>
+		 
+		 <action name="adicionarLogo" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="adicionarLogo">
+			<result type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+			
+			<result name="error" type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+			
+		 </action>
+		 
+		 <action name="excluirLogo" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="excluirLogo">
+			<result type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+		 </action>
+		 
+		 <action name="adicionarFoto" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="adicionarFoto">
+			<result type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+			
+			<result name="error" type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+		 </action>
+		 
+		 <action name="excluirFoto" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="excluirFoto">
+			<result type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+		 </action>
+	</package>
+	
+	<package name="lancamento" extends="struts-default">
+		<action name="adicionarLancamento" class="com.bandManager.action.lancamento.LancamentoCRUDAction" method="recuperar">
+			<result>jsp/lancamento-editar.jsp</result>
+		</action>
+
+		<action name="editarLancamento" class="com.bandManager.action.lancamento.LancamentoCRUDAction" method="recuperar">
+			<result>jsp/lancamento-editar.jsp</result>
+		</action>
+				
+		<action name="salvarLancamento" class="com.bandManager.action.lancamento.LancamentoCRUDAction" method="salvar">
+			<result type="redirectAction">
+				<param name="actionName">editarLancamentos?banda.id=%{banda.id}</param>
+			</result>
+		</action>
+		
+		<action name="excluirLancamento" class="com.bandManager.action.lancamento.LancamentoCRUDAction" method="excluir">
+			<result type="chain">editarLancamentos</result>
+		</action>
+		
+		<action name="uploadCapa" class="com.bandManager.action.lancamento.LancamentoUploadImagensAction" method="uploadCapa">
+			<result type="redirectAction">
+				<param name="actionName">editarLancamento?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}</param>
+			</result>
+		</action>
+		
+		<action name="excluirCapa" class="com.bandManager.action.lancamento.LancamentoUploadImagensAction" method="excluirCapa">
+			<result type="redirectAction">
+				<param name="actionName">editarLancamento?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="musica" extends="struts-default">
+		<action name="adicionarMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="recuperar">
+			<result>jsp/musica-editar.jsp</result>
+		</action>
+		
+		<action name="editarMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="recuperar">
+			<result>jsp/musica-editar.jsp</result>
+		</action>
+		
+		<action name="excluirMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="excluir">
+			<result type="redirectAction">
+				<param name="actionName">editarLancamento?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}</param>
+			</result>
+		</action>
+		
+		<action name="salvarMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="salvar">
+			<result type="redirectAction">
+				<param name="actionName">editarLancamento?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}</param>
+			</result>
+		</action>
+		
+		<action name="uploadMusica" class="com.bandManager.action.musica.MusicaUploadArquivoAction" method="uploadMusica">
+			<result type="redirectAction">
+				<param name="actionName">editarMusica?lancamento.id=%{lancamento.id}&amp;musica.id=%{musica.id}</param>
+			</result>
+		</action>		
+	</package>
+</struts>

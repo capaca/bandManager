@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans classpath:spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx classpath:spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop classpath:spring-aop-2.0.xsd"
+	default-autowire="byName">
+
+	<!-- DAO`S -->
+	<bean id="musicaDAO" class="com.bandManager.dao.implementacao.MusicaDAO" />
+	<bean id="lancamentoDAO" class="com.bandManager.dao.implementacao.LancamentoDAO" />
+	<bean id="bandaDAO" class="com.bandManager.dao.implementacao.BandaDAO" />
+	<bean id="paisDAO" class="com.bandManager.dao.implementacao.PaisDAO" />
+	
+	<!-- Tratamento das exceções do JPA -->	
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"></bean>
+
+	<!-- SPRING: Controle de Transação -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+		
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor">
+		<property name="defaultPersistenceUnitName" value="entityManagerFactory"/>
+	</bean>
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>    
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="transactionAttributeSource">
+            <bean class="org.springframework.transaction.annotation.AnnotationTransactionAttributeSource" />
+        </property>
+    </bean>
+    
+    <bean class="org.springframework.transaction.interceptor.TransactionAttributeSourceAdvisor">
+        <constructor-arg index="0" ref="transactionInterceptor"/>
+    </bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+		 
+</beans>
+
+
+

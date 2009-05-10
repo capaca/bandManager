@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans classpath:spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx classpath:spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop classpath:spring-aop-2.0.xsd"
+	default-autowire="byName">
+
+	<!-- PaisFacade -->
+	<bean id="paisFacade" class="com.bandManager.facade.implementacao.PaisFacade">
+		<property name="paisDAO" ref="paisDAO" />
+	</bean>
+	
+	<!-- LancamentoFacade -->
+	<bean id="lancamentoFacade" class="com.bandManager.facade.implementacao.LancamentoFacade">
+		<property name="lancamentoDAO" ref="lancamentoDAO" />
+	</bean>
+	
+	<!-- BandaFacade -->
+	<bean id="bandaFacade" class="com.bandManager.facade.implementacao.BandaFacade">
+		<property name="bandaDAO" ref="bandaDAO" />
+	</bean>
+	
+	<!-- MusicaFacade -->
+	<bean id="musicaFacade" class="com.bandManager.facade.implementacao.MusicaFacade">
+		<property name="musicaDAO" ref="musicaDAO" />
+	</bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

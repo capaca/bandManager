@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+	"-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+	
+<beans>
+	<bean id="bandaCRUDAction" class="com.bandManager.action.banda.BandaCRUDAction">
+		<property name="bandaFacade" ref="bandaFacade" />
+		<property name="paisFacade" ref="paisFacade" />
+    </bean>
+    
+    <bean id="lancamentoCRUDAction" class="com.bandManager.action.lancamento.LancamentoCRUDAction">
+		<property name="lancamentoFacade" ref="lancamentoFacade" />
+    </bean>
+    
+    <bean id="musicaCRUDAction" class="com.bandManager.action.musica.MusicaCRUDAction">
+		<property name="musicaFacade" ref="musicaFacade" />
+    </bean>
+    
+    <bean id="bandaUploadArquivosAction" class="com.bandManager.action.banda.BandaUploadArquivosAction">
+		<property name="bandaFacade" ref="bandaFacade" />
+    </bean>
+    
+    <bean id="lancamentoUploadImagensAction" class="com.bandManager.action.lancamento.LancamentoUploadImagensAction">
+		<property name="lancamentoFacade" ref="lancamentoFacade" />
+    </bean>
+    
+    <bean id="musicaUploadArquivoAction" class="com.bandManager.action.musica.MusicaUploadArquivoAction">
+		<property name="musicaFacade" ref="musicaFacade" />
+    </bean>
+    
+</beans>
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app id="starter" version="2.4" 
+         xmlns="http://java.sun.com/xml/ns/j2ee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+	<display-name>BandManager</display-name>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:application-context.xml
+		</param-value>
+	</context-param>
+	
+	<!-- Filters -->	
+	<filter>
+        <filter-name>action2-cleanup</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+    </filter>     
+    <filter>
+        <filter-name>action2</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+    </filter>
+    
+	<filter-mapping>
+        <filter-name>action2-cleanup</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>     
+    <filter-mapping>
+        <filter-name>action2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+	
+	<!-- Listeners -->
+	<listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <!-- Servlets -->
+    <servlet>
+    	<servlet-name>jspSupportServlet</servlet-name>
+    	<servlet-class>org.apache.struts2.views.JspSupportServlet</servlet-class>
+    	<load-on-startup>5</load-on-startup>
+    </servlet>
+	
+	<!-- Tiles -->
+	<servlet>
+	    <servlet-name>tiles</servlet-name>
+	    <servlet-class>org.apache.tiles.web.startup.TilesServlet</servlet-class>
+	    <init-param>
+	        <param-name>
+	          org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
+	        </param-name>
+	        <param-value>
+	          /WEB-INF/tiles.xml,/org/apache/tiles/classpath-defs.xml
+	        </param-value>
+	    </init-param>
+	    <load-on-startup>2</load-on-startup>
+	</servlet>
+	
+	<servlet>
+    	<servlet-name>Tiles Dispatch Servlet</servlet-name>
+    	<servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+	    <servlet-name>Tiles Dispatch Servlet</servlet-name>
+	    <url-pattern>*.page</url-pattern>
+	</servlet-mapping>
+    
+    <!-- Plugin do Struts 2 para o Tiles 2 -->
+    <listener>
+	  <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+	</listener>
+    
+    <!-- configurando sessão -->
+    <session-config>
+    	<session-timeout>20</session-timeout>
+    </session-config>
+    
+    <!-- Welcome file lists -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>default.jsp</welcome-file>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    
+</web-app>
