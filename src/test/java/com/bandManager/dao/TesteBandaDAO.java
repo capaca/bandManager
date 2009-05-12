@@ -14,6 +14,21 @@ import com.bandManager.domain.Pais;
 public class TesteBandaDAO extends Teste {
 	
 	private Pais pais;
+	private String textoMuitoLongo = "" +
+			"Lorem ipsum dolor sit amet, consectetur adipiscing elit. " +
+			"Maecenas a dui sit amet massa ultricies porttitor posuere ut " +
+			"lorem. Sed dignissim massa facilisis ante eleifend bibendum. Cum " +
+			"sociis natoque penatibus et magnis dis parturient montes, nascetur " +
+			"ridiculus mus. Donec lacinia, nunc sit amet feugiat bibendum, risus " +
+			"metus eleifend sem, eget vulputate felis nisl eget nibh. Praesent " +
+			"semper ante at elit accumsan quis interdum sem consectetur. " +
+			"Suspendisse commodo venenatis erat, in venenatis dolor convallis non. " +
+			"Mauris enim velit, ornare ut rutrum sit amet, varius sed quam. " +
+			"Sed ac felis nisi, at euismod tortor. Quisque tincidunt faucibus nibh, " +
+			"lobortis sagittis leo aliquam vitae. Vivamus consequat placerat quam, in " +
+			"lobortis turpis dictum sed. In iaculis metus eu lacus dapibus eget tincidunt " +
+			"massa molestie. Aenean vel nunc nulla. Maecenas condimentum varius gravida. " +
+			"Nulla facilisi. ";
 	
 	@Before
 	public void preparacao(){
@@ -80,6 +95,19 @@ public class TesteBandaDAO extends Teste {
 		
 		//Verifica se a banda foi recuperada corretamente
 		this.utilVerificarAtributos(banda, bandaRecuperada);
+	}
+	
+	@Test
+	public void salvarBandaComReleaseLongo(){
+		//Cria a banda e seta o texto longo
+		Banda banda = utilCriarBanda();
+		banda.setRelease(textoMuitoLongo);
+		
+		//Salva a banda novamente
+		Banda bandaSalva = super.getBandaDAO().salvar(banda);
+
+		//Verifica se a banda foi salva corretamente
+		this.utilVerificarAtributos(banda, bandaSalva);
 	}
 	
 }

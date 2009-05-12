@@ -1,14 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <%@taglib prefix="s" uri="/struts-tags" %>
-</head>
-<body>
-	<h1>Editar Música</h1>
+
+	<s:url id="urlEditarLancamentos" action="editarLancamentos">
+		<s:param name="banda.id" value="%{banda.id}" />
+	</s:url>
+	
+	<s:url id="urlEditarLancamento" action="editarLancamento">
+		<s:param name="lancamento.id" value="%{lancamento.id}" />
+		<s:param name="banda.id" value="%{banda.id}" />
+	</s:url>
+	
+	<p class="migalha">
+		<s:a href="%{#urlEditarLancamentos}">Banda</s:a> :: 
+		<s:a href="%{#urlEditarLancamento}">Lancamento</s:a> :: Música 
+	</p>
+	
+	<h1>Editar 
+		<s:if test="%{musica!=null && musica.nome!=''}">
+			<s:property value="musica.nome"/>
+		</s:if>
+		<s:else>
+			Música
+		</s:else>
+	</h1>
 	
 	<s:url id="urlSalvarMusica" value="salvarMusica.action" escapeAmp="false">
 		<s:param name="lancamento.id" value="%{lancamento.id}" />
@@ -25,52 +40,74 @@
 			<s:hidden name="musica.id" value="0"/>
 		</s:else>
 		
-		<s:textfield name="musica.nome" label="Nome"/>
-		<s:textfield name="musica.numero" label="Número" size="2"/>
-		<s:textarea name="musica.letra" rows="5" cols="20" label="Letra"/>
-		<s:submit value="Salvar" />
-	</s:form>
-	
-	<s:if test="%{musica.arquivo != null && lancamento.capa != ''}">
-	
-		<table border="1">
+		<table class="form" border="0">
 			<tr>
 				<th>
-					Arquivo de Áudio
+					Nome:
 				</th>
+				<td>
+					<s:textfield name="musica.nome" theme="simple"/>
+				</td>
+				
+				<th>
+					Número:
+				</th>
+				<td>
+					<s:textfield name="musica.numero" size="2" theme="simple"/>
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">
+					Letra:
+				</th>
+				<td colspan="3">
+					<s:textarea name="musica.letra" rows="10" cols="42" theme="simple"/>
+				</td>
 			</tr>
 			<tr>
 				<td>
-					<s:a href="%{musica.arquivo}">Baixar música</s:a>	
 				</td>
-				<td>
-					<s:url id="urlExcluirArquivoMusica" action="excluirArquivoMusica">
-						<s:param value="%{musica.id}" name="musica.id"/>
-					</s:url>
-					
-					<s:a href="%{#urlExcluirArquivoMusica}">Excluir Musica</s:a>	
+				<td colspan="3">
+					<s:submit value="Salvar" theme="simple"/>
 				</td>
 			</tr>
 		</table>
-		
-	</s:if>
-	<s:else>
-		Nenhum arquivo de musica adicionado.
-	</s:else>
-	
-	<s:form action="uploadMusica.action?musica.id=%{musica.id}" method="post" enctype="multipart/form-data">
-		<s:hidden name="musica.id" value="%{musica.id}" />
-		<s:file  name="arquivo" label="Arquivo de Música" />
-		<s:submit value="Upload" />
 	</s:form>
 	
-	<p align="center">
-		<s:url id="urlEditarLancamento" action="editarLancamento">
-			<s:param name="lancamento.id" value="%{lancamento.id}" />
-			<s:param name="banda.id" value="%{banda.id}" />
-		</s:url>
+	<s:if test="musica!= null && musica.id>0">
+		<s:form action="uploadMusica.action?musica.id=%{musica.id}" method="post" enctype="multipart/form-data">
+			<s:hidden name="musica.id" value="%{musica.id}" />
+			<table class="form" border="0">
+				<tr>
+					<th>
+						Arquivo de áudio:
+					</th>
+					<td>
+						<s:file  name="arquivo" label="Arquivo de Música" theme="simple"/>
+						<s:submit value="Upload" theme="simple"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<s:if test="%{musica.arquivo!=null}">
+								<s:url id="urlExcluirArquivoMusica" action="excluirArquivoMusica">
+									<s:param value="%{musica.id}" name="musica.id"/>
+								</s:url>
 		
+								<a href="${musica.arquivo}">Baixar Música</a> | <s:a href="%{#urlExcluirArquivoMusica}">Excluir Musica</s:a>	
+							
+						</s:if>
+						<s:else>
+							<em>Nenhum arquivo de música adicionado.</em>
+						</s:else>
+					</td>
+				</tr>
+			</table>
+		</s:form>
+	</s:if>
+	
+	<p align="center">
 		<s:a href="%{#urlEditarLancamento}">Voltar</s:a>
 	</p>
-</body>
-</html>

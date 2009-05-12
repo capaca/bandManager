@@ -1,37 +1,75 @@
 
-/*
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
-*/
-
 body {
 	margin: 0;
 	padding: 0;
 	background: #000000 url(images/img01.jpg) repeat left top;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-family: sans-serif;
 	font-size: 13px;
 	color: #837669;
 }
 
 h1, h2, h3 {
 	margin: 0;
-	font-family: Georgia, "Times New Roman", Times, serif;
+	font-family: serif;
 	font-weight: normal;
 	color: #D53707;
 }
 
-h1 { font-size: 44px; }
+h1 { 
+	font-size: 44px;
+	border-bottom: 3px solid #D53707;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
 
-h2 { font-size: 20px; }
+h2 {
+	margin-top:25px;
+	margin-bottom:15px; 
+	font-size: 25px;
+}
 
 h3 { }
+
+input, textarea {
+	border: 1px solid black;
+}
+
+.form {
+	margin-top: 20px;
+}
+
+.form th{
+	text-align: right;
+	padding-left: 20px;
+	font-style: italic;
+}
+
+.form td{
+	text-align: justify;
+}
+
+.listagem th{
+	background-color: #D53707;
+	color: black;
+}
+
+.listagem td{
+	text-align: center;
+}
+
+.migalha {
+	background:transparent url(images/img03.jpg) repeat scroll left top;
+	margin-top:10px;
+	margin-bottom:3px;
+	padding:2px 0 2px 15px;
+	font-size: 13px;
+}
 
 p, ul, ol {
 	margin-top: 0;
 	line-height: 240%;
 	text-align: justify;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-family: sans-serif;
 	font-size: 11px;
 }
 
@@ -104,7 +142,7 @@ hr { display: none; }
 	margin-right: 17px;
 	padding: 5px 12px;
 	text-decoration: none;
-	font: 14px Georgia, "Times New Roman", Times, serif;
+	font: serif;
 	color: #FFFFFF;
 }
 
@@ -119,46 +157,6 @@ hr { display: none; }
 	color: #FFFFFF;
 }
 
-/* Search */
-
-#search {
-	float: right;
-	width: 305px;
-	height: 40px;
-}
-
-#search form {
-	float: right;
-	margin: 0;
-	padding: 28px 20px 0 0;
-}
-
-#search fieldset {
-	margin: 0;
-	padding: 0;
-	border: none;
-}
-
-#search input {
-	float: left;
-	font: 12px Georgia, "Times New Roman", Times, serif;
-	border: none;
-}
-
-input {
-	width: 135px;
-	height: 18px;
-	padding: 3px 0 0 5px;
-	background: #ECF9E4;
-	color: #658453;
-}
-
-#search-submit {
-	height: 21px;
-	margin-left: 12px;
-	color: #39561D;
-}
-
 /* Page */
 
 #page {
@@ -166,191 +164,3 @@ input {
 	padding: 0 40px;
 }
 
-/** LOGO */
-
-#logo {
-	height: 148px;
-}
-
-#logo h1, #logo p {
-	float: left;
-	margin: 0;
-	padding: 0;
-	line-height: normal;
-}
-
-#logo h1 { padding-top: 45px;}
-
-#logo h1 a {
-	padding: 5px 0 5px 10px;
-	text-decoration: none; 
-	background: #000000; 
-	color: #E46115;
-}
-
-#logo h1 a:hover { text-decoration: none; }
-
-#logo p {
-	padding: 65px 0 0 15px;
-	font: italic 13px Georgia, "Times New Roman", Times, serif;
-	color: #B6ACA2;
-}
-
-#logo p a {
-	text-decoration: none;
-	color: #B6ACA2;
-}
-
-#logo p a:hover { text-decoration: underline; }
-
-/* Content */
-
-#content {
-	float: left;
-	width: 75%;
-}
-
-/* Post */
-
-.post {
-	margin-bottom: 25px;
-}
-
-.post .title {
-	margin-bottom: 3px;
-	padding: 2px 0px 2px 15px;
-	background: url(images/img03.jpg) repeat left top;
-}
-
-.post .meta {
-	margin: 0 0 3px 0;
-	padding: 2px 30px 2px 15px;
-	font: italic 10px Georgia, "Times New Roman", Times, serif;
-	color: #B6ACA2;
-}
-
-.post .meta a { color: #B6ACA2; }
-
-.post .entry {
-	padding: 25px 15px;
-}
-
-.post .links {
-	margin: 0 250px 0 0;
-	padding: 0 0 0 0px;
-}
-
-.post .links .comments {
-}
-
-.post .links .permalink {
-	padding-left: 17px;
-}
-
-/* Sidebar */
-
-#sidebar {
-	float: right;
-	width: 20%;
-	margin-top: -100px;
-	padding-left: 30px;
-}
-
-#sidebar ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	line-height: normal;
-}
-
-#sidebar li {
-	margin-bottom: 30px;
-	padding: 0 0 20px 0px;
-}
-
-#sidebar li ul {
-	line-height: 200%;
-}
-
-#sidebar li li {
-	margin: 0;
-	padding: 0 0 0 15px;
-}
-
-#sidebar p {
-	padding: 0 15px;
-}
-
-#sidebar h2 {
-	margin: 0 0 20px 0px;
-	padding: 6px 0 6px 15px;
-	background: url(images/img03.jpg) repeat left top;
-	font-size: 18px;
-}
-
-
-#sidebar p {
-	line-height: 200%;
-}
-
-/* Calendar */
-
-#calendar {
-}
-
-#calendar caption {
-	padding-bottom: 5px;
-	font-weight: bold;
-}
-
-#calendar table {
-	width: 100%;
-	border-collapse: collapse;
-	border: 1px solid #0F0E0E;
-}
-
-#calendar thead th {
-	padding: 5px 0;
-	text-align: center;
-	border-top: 1px solid #0F0E0E;
-	border-left: 1px solid #0F0E0E;
-	background: #0F0E0E;
-}
-
-#calendar tbody td {
-	padding: 5px 0;
-	text-align: center;
-}
-
-#calendar tfoot td {
-	padding: 5px;
-}
-
-#calendar tfoot #next {
-	text-align: right;
-}
-
-#calendar #today {
-	background: #0F0E0E;
-}
-
-/* Footer */
-
-#footer {
-	margin: 0 auto;
-	padding: 0;
-	background: url(images/img02.jpg) repeat;
-	border-top: 4px solid #910000;
-}
-
-#footer p {
-	margin: 0;
-	padding: 20px 0;
-	text-align: center;
-	line-height: normal;
-	color: #FFFFFF;
-}
-
-#footer a {
-	color: #FFFFFF;
-}

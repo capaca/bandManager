@@ -1,15 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
-</head>
-<body>
-	<h1>Editar LanÃ§amento</h1>
+
+	<s:url id="urlEditarLancamentos" action="editarLancamentos">
+		<s:param name="banda.id" value="%{banda.id}" />
+	</s:url>
+	
+	<p class="migalha">
+		<s:a href="%{#urlEditarLancamentos}">Banda</s:a> :: Lancamento
+	</p>
+	
+	<h1>Editar 
+		<s:if test="lancamento!=null && lancamento.nome!=''">
+			<s:property value="lancamento.nome"/>
+		</s:if>
+		<s:else>
+			Lançamento
+		</s:else>
+	</h1>
 	
 	<s:url id="urlSalvarLancamento" value="salvarLancamento.action" escapeAmp="true">
     	<s:param name="banda.id" value="banda.id" />
@@ -25,64 +32,98 @@
 			<s:hidden name="lancamento.id" value="0"/>
 		</s:else>
 		
-		<s:textfield name="lancamento.nome" label="Nome" required="true"/>
-		<s:textfield name="lancamento.ano" label="Ano" required="true"/>
-		<s:textarea name="lancamento.informacoes" label="InformaÃ§Ãµes" cols="20" rows="5" required="true"/>
-		
-		<s:submit value="Salvar"/>
-	</s:form>
-	
-	<s:if test="%{lancamento.capa != null && lancamento.capa != ''}">
-	
-		<table border="1">
+		<table class="form" border="0">
 			<tr>
 				<th>
-					Capa
+					Nome:
 				</th>
+				<td>
+					<s:textfield name="lancamento.nome" theme="simple"/>
+				</td>
+				
+				<th>
+					Ano:
+				</th>
+				<td>
+					<s:textfield name="lancamento.ano" theme="simple"/>
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">
+					Informações:
+				</th>
+				<td colspan="3">
+					<s:textarea name="lancamento.informacoes" cols="58" rows="8" theme="simple"/>
+				</td>				
 			</tr>
 			<tr>
 				<td>
-					<html:img src="${lancamento.capa}" width="150"/>	
 				</td>
+				<td colspan="3">
+					<s:submit value="Salvar" theme="simple"/>
+				</td>
+			</tr>
+		</table>
+	</s:form>
+	
+	<table class="form">
+		<tr>
+			<th>
+				Capa:
+			</th>
+			<td>
+				<s:file  name="capa" theme="simple"/>
+				<s:submit value="Upload" theme="simple"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			</td>
+			<s:if test="%{lancamento.capa != null && lancamento.capa != ''}">
 				<td>
 					<s:url id="urlExcluirCapa" action="excluirCapa">
 						<s:param value="%{lancamento.id}" name="lancamento.id"/>
 					</s:url>
 					
+					<a href="${lancamento.capa}">Ver Capa</a>
 					<s:a href="%{#urlExcluirCapa}">Excluir Capa</s:a>	
 				</td>
+			</s:if>
+			<s:else>
+				<td>
+					<em>Nenhuma Capa adicionada.</em>	
+				</td>
+			</s:else>
+		</tr>
+		<s:if test="%{lancamento.id>0}">
+			<tr>
+				<td>
+				</td>
+				<td>
+					<s:url id="urlAdicionarMusica" value="adicionarMusica">
+						<s:param name="lancamento.id" value="lancamento.id"/>
+						<s:param name="banda.id" value="banda.id"/>
+					</s:url>
+					<s:a href="%{#urlAdicionarMusica}">Adicionar Música</s:a>
+				</td>
 			</tr>
-		</table>
-		
-	</s:if>
-	<s:else>
-		Nenhuma capa adicionada.
-	</s:else>
-	
-	<s:form action="uploadCapa.action?lancamento.id=%{lancamento.id}" method="post"enctype="multipart/form-data">
-		<s:hidden name="lancamento.id" value="%{lancamento.id}" />
-		<s:file  name="capa" label="Capa"/>
-		<s:submit value="Upload" />
-	</s:form>
+		</s:if>
+	</table>
 	
 	<s:if test="%{lancamento.id>0}">
-		<s:url id="urlAdicionarMusica" value="adicionarMusica">
-			<s:param name="lancamento.id" value="lancamento.id"/>
-			<s:param name="banda.id" value="banda.id"/>
-		</s:url>
-		<s:a href="%{#urlAdicionarMusica}">Adicionar MÃºsica</s:a>
+		<h2>Músicas</h2>
 		
 		<s:if test="lancamento.musicas.size()<=0">
-			<p align="center">Nenhuma mÃºsica</p>
+			<p align="center">Nenhuma música</p>
 		</s:if>
 		<s:else>
-			<table border="1" width="100%">
+			<table class="listagem" border="0" width="80%" align="center">
 				<tr>
 					<th>
 						Nome
 					</th>
 					<th>
-						NÃºmero
+						Número
 					</th>
 					<th>
 						Letra
@@ -132,11 +173,5 @@
 	</s:if>
 	
 	<p align="center">
-		<s:url id="urlEditarLancamentos" action="editarLancamentos">
-			<s:param name="banda.id" value="%{banda.id}" />
-		</s:url>
-		
 		<s:a href="%{#urlEditarLancamentos}">Voltar</s:a>
 	</p>
-</body>
-</html>

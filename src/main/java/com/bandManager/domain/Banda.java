@@ -3,6 +3,7 @@ package com.bandManager.domain;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -90,6 +91,7 @@ public class Banda {
 		this.anoFormacao = anoFormacao;
 	}
 
+	@Column(length = 2000)
 	public String getRelease() {
 		return release;
 	}

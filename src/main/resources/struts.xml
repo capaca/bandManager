@@ -22,13 +22,13 @@
 			</interceptor-stack>
 		</interceptors>
 		 		
-		 <action name="editarBanda/*" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
-			<result>jsp/banda-editar.jsp</result>
+		 <action name="editarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
+			<result>banda-editar.page</result>
 			<interceptor-ref name="default"/>
 		 </action>
 		 
 		 <action name="editarLancamentos" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
-		 	<result>jsp/banda-lancamentos.jsp</result>
+		 	<result>banda-lancamentos.page</result>
 		 </action>
 		 
 		 <action name="salvarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="salvar">
@@ -74,11 +74,11 @@
 	
 	<package name="lancamento" extends="struts-default">
 		<action name="adicionarLancamento" class="com.bandManager.action.lancamento.LancamentoCRUDAction" method="recuperar">
-			<result>jsp/lancamento-editar.jsp</result>
+			<result>lancamento-editar.page</result>
 		</action>
 
 		<action name="editarLancamento" class="com.bandManager.action.lancamento.LancamentoCRUDAction" method="recuperar">
-			<result>jsp/lancamento-editar.jsp</result>
+			<result>lancamento-editar.page</result>
 		</action>
 				
 		<action name="salvarLancamento" class="com.bandManager.action.lancamento.LancamentoCRUDAction" method="salvar">
@@ -106,11 +106,11 @@
 	
 	<package name="musica" extends="struts-default">
 		<action name="adicionarMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="recuperar">
-			<result>jsp/musica-editar.jsp</result>
+			<result>musica-editar.page</result>
 		</action>
 		
 		<action name="editarMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="recuperar">
-			<result>jsp/musica-editar.jsp</result>
+			<result>musica-editar.page</result>
 		</action>
 		
 		<action name="excluirMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="excluir">

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">   
+
+<tiles-definitions>
+   <!-- definição do layout da página principal -->
+   	<definition name="template.page" template="/template/layout.jsp">
+    	<put-attribute name="titulo" value="Band Manager"/>
+      	<put-attribute name="cabecalho" value="/template/cabecalho.jsp"/>
+      	<put-attribute name="rodape" value="/template/rodape.jsp" />
+	</definition>
+   	
+   	<definition name="banda-editar.page" extends="template.page">
+    	<put-attribute name="conteudo" value="/jsp/banda-editar.jsp" />
+	</definition>	
+	
+   	<definition name="banda-lancamentos.page" extends="template.page">
+    	<put-attribute name="conteudo" value="/jsp/banda-lancamentos.jsp" />
+	</definition>
+	
+	<definition name="lancamento-editar.page" extends="template.page">
+    	<put-attribute name="conteudo" value="/jsp/lancamento-editar.jsp" />
+	</definition>
+	
+	<definition name="musica-editar.page" extends="template.page">
+    	<put-attribute name="conteudo" value="/jsp/musica-editar.jsp" />
+	</definition>	
+</tiles-definitions>
