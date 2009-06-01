@@ -5,6 +5,7 @@ import com.bandManager.domain.Banda;
 import com.bandManager.domain.Lancamento;
 import com.bandManager.facade.ILancamentoFacade;
 
+@SuppressWarnings("serial")
 public class LancamentoCRUDAction extends Action{
 
 	private ILancamentoFacade lancamentoFacade;

@@ -14,6 +14,7 @@ import com.bandManager.domain.Banda;
 import com.bandManager.domain.Lancamento;
 import com.bandManager.domain.Pais;
 import com.bandManager.exception.ArquivoInvalidoException;
+import com.bandManager.exception.ObjetoNaoEncontradoException;
 
 public class TesteBandaFacade extends Teste {
 
@@ -30,8 +31,12 @@ public class TesteBandaFacade extends Teste {
 		this.lancamento1 = utilCriarLancamento(this.banda);
 		this.lancamento2 = utilCriarLancamento(this.banda);
 				
-		//Atualiza a referencia da banda
-		this.banda = super.getBandaDAO().recuperar(this.banda.getId());
+		try {
+			//Atualiza a referencia da banda
+			this.banda = super.getBandaDAO().recuperar(this.banda.getId());
+		} catch (ObjetoNaoEncontradoException e) {
+			fail("Banda não encontrada");
+		}
 	}
 	
 	@Test
@@ -45,7 +50,7 @@ public class TesteBandaFacade extends Teste {
 	}
 	
 	@Test
-	public void recuperar(){
+	public void recuperar() throws ObjetoNaoEncontradoException{
 		
 		//Salva a banda
 		super.getBandaFacade().salvar(this.banda);
@@ -58,7 +63,7 @@ public class TesteBandaFacade extends Teste {
 	}
 	
 	@Test
-	public void adicionarLogo() throws ArquivoInvalidoException, IOException{
+	public void adicionarLogo() throws ArquivoInvalidoException, IOException, ObjetoNaoEncontradoException{
 		//Cria o arquivo que vai ser transferido para o servidor
 		File file = new File(PATH_SISTEMA+"/logo.jpg");
 		assertTrue(file.exists());
@@ -78,7 +83,7 @@ public class TesteBandaFacade extends Teste {
 	}
 	
 	@Test
-	public void excluirLogo() throws ArquivoInvalidoException, IOException{
+	public void excluirLogo() throws ArquivoInvalidoException, IOException, ObjetoNaoEncontradoException{
 		//Cria o arquivo que vai ser transferido para o servidor
 		File file = new File(PATH_SISTEMA+"/logo.jpg");
 		assertTrue(file.exists());
@@ -103,7 +108,7 @@ public class TesteBandaFacade extends Teste {
 	}
 	
 	@Test
-	public void adicionarFoto() throws ArquivoInvalidoException, IOException{
+	public void adicionarFoto() throws ArquivoInvalidoException, IOException, ObjetoNaoEncontradoException{
 		//Cria o arquivo que vai ser transferido para o servidor
 		File file = new File(PATH_SISTEMA+"/foto.jpg");
 		assertTrue(file.exists());
@@ -123,7 +128,7 @@ public class TesteBandaFacade extends Teste {
 	}
 	
 	@Test
-	public void excluirFoto() throws ArquivoInvalidoException, IOException{
+	public void excluirFoto() throws ArquivoInvalidoException, IOException, ObjetoNaoEncontradoException{
 		//Cria o arquivo que vai ser transferido para o servidor
 		File file = new File(PATH_SISTEMA+"/foto.jpg");
 		assertTrue(file.exists());

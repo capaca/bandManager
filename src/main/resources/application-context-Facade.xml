@@ -16,6 +16,7 @@
 	<!-- LancamentoFacade -->
 	<bean id="lancamentoFacade" class="com.bandManager.facade.implementacao.LancamentoFacade">
 		<property name="lancamentoDAO" ref="lancamentoDAO" />
+		<property name="musicaFacade" ref="musicaFacade" />
 	</bean>
 	
 	<!-- BandaFacade -->
@@ -26,6 +27,11 @@
 	<!-- MusicaFacade -->
 	<bean id="musicaFacade" class="com.bandManager.facade.implementacao.MusicaFacade">
 		<property name="musicaDAO" ref="musicaDAO" />
+	</bean>
+	
+	<!-- ShowFacade -->
+	<bean id="showFacade" class="com.bandManager.facade.implementacao.ShowFacade">
+		<property name="showDAO" ref="showDAO" />
 	</bean>
 </beans>
 

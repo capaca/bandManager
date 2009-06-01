@@ -7,6 +7,7 @@ import com.bandManager.action.Action;
 import com.bandManager.domain.Arquivo;
 import com.bandManager.domain.Banda;
 import com.bandManager.exception.ArquivoInvalidoException;
+import com.bandManager.exception.ObjetoNaoEncontradoException;
 import com.bandManager.facade.IBandaFacade;
 import com.bandManager.util.FileUtil;
 
@@ -26,23 +27,25 @@ public class BandaUploadArquivosAction extends Action {
 	public static final String DIR_BANDA_FOTO = "imagens/banda/foto/";
 	
 	public String adicionarLogo(){
-		//Recupera a banda
-		this.banda = this.bandaFacade.recuperar(banda.getId());
-		
-		//Pega o caminho completo do arquivo
-		String nomeArquivo = this.montarNomeArquivo("Logo",logoFileName); 
-		
-		//Instancia o arquivo
-		Arquivo logo = new Arquivo(nomeArquivo,logoContentType,this.logo,DIR_BANDA_LOGO);
 		
 		//Tenta adicionar o logo
 		try {
+			this.banda = this.bandaFacade.recuperar(banda.getId());
+			
+			//Pega o caminho completo do arquivo
+			String nomeArquivo = this.montarNomeArquivo("Logo",logoFileName); 
+			
+			//Instancia o arquivo
+			Arquivo logo = new Arquivo(nomeArquivo,logoContentType,this.logo,DIR_BANDA_LOGO);
+			
+			
 			this.bandaFacade.adicionarLogo(banda,logo,FileUtil.getCaminhoSitema());
 			
 		} catch (ArquivoInvalidoException e) {
 			return ERROR;
-			
 		} catch (IOException e) {
+			return ERROR;
+		} catch (ObjetoNaoEncontradoException e) {
 			return ERROR;
 		}
 			
@@ -51,38 +54,36 @@ public class BandaUploadArquivosAction extends Action {
 
 
 	public String excluirLogo(){
-		//Recupera a banda 
-		this.banda = this.bandaFacade.recuperar(this.banda.getId());
-		
 		try {
+			this.banda = this.bandaFacade.recuperar(this.banda.getId());
 			this.bandaFacade.excluirLogo(banda, FileUtil.getCaminhoSitema());
 		} catch (IOException e) {
 			return ERROR;
-		} catch (ArquivoInvalidoException e) {
+		} catch (ObjetoNaoEncontradoException e) {
 			return ERROR;
-		}
+		} 
 
 		return SUCCESS;
 	}
 
 	public String adicionarFoto(){
-		//Recupera a banda
-		this.banda = this.bandaFacade.recuperar(banda.getId());
-		
-		//Pega o caminho completo do arquivo
-		String nomeArquivo = this.montarNomeArquivo("Foto",this.fotoFileName); 
-		
-		//Instancia o arquivo
-		Arquivo foto = new Arquivo(nomeArquivo,fotoContentType,this.foto,DIR_BANDA_FOTO);
-		
 		//Tenta adicionar o logo
 		try {
+			this.banda = this.bandaFacade.recuperar(banda.getId());
+			
+			//Pega o caminho completo do arquivo
+			String nomeArquivo = this.montarNomeArquivo("Foto",this.fotoFileName); 
+			
+			//Instancia o arquivo
+			Arquivo foto = new Arquivo(nomeArquivo,fotoContentType,this.foto,DIR_BANDA_FOTO);
+			
 			this.bandaFacade.adicionarFoto(banda,foto,FileUtil.getCaminhoSitema());
 			
 		} catch (ArquivoInvalidoException e) {
 			return ERROR;
-			
 		} catch (IOException e) {
+			return ERROR;
+		} catch (ObjetoNaoEncontradoException e) {
 			return ERROR;
 		}
 			
@@ -90,15 +91,12 @@ public class BandaUploadArquivosAction extends Action {
 	}
 	
 	public String excluirFoto(){
-		
-		//Recupera a banda 
-		this.banda = this.bandaFacade.recuperar(this.banda.getId());
-		
 		try {
+			this.banda = this.bandaFacade.recuperar(this.banda.getId());
 			this.bandaFacade.excluirFoto(banda, FileUtil.getCaminhoSitema());
 		} catch (IOException e) {
 			return ERROR;
-		} catch (ArquivoInvalidoException e) {
+		} catch (ObjetoNaoEncontradoException e) {
 			return ERROR;
 		}
 		

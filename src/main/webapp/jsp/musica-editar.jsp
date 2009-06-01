@@ -75,7 +75,9 @@
 	</s:form>
 	
 	<s:if test="musica!= null && musica.id>0">
-		<s:form action="uploadMusica.action?musica.id=%{musica.id}" method="post" enctype="multipart/form-data">
+		<s:form action="adicionarArquivoAudio.action?musica.id=%{musica.id}" method="post" enctype="multipart/form-data">
+			<s:hidden name="lancamento.id" value="%{lancamento.id}" />
+			<s:hidden name="banda.id" value="%{banda.id}" />
 			<s:hidden name="musica.id" value="%{musica.id}" />
 			<table class="form" border="0">
 				<tr>
@@ -91,12 +93,12 @@
 					<td>
 					</td>
 					<td>
-						<s:if test="%{musica.arquivo!=null}">
-								<s:url id="urlExcluirArquivoMusica" action="excluirArquivoMusica">
+						<s:if test="%{musica.arquivoAudio!=null}">
+								<s:url id="urlExcluirArquivoMusica" action="excluirArquivoAudio">
 									<s:param value="%{musica.id}" name="musica.id"/>
 								</s:url>
 		
-								<a href="${musica.arquivo}">Baixar Música</a> | <s:a href="%{#urlExcluirArquivoMusica}">Excluir Musica</s:a>	
+								<a href="${musica.arquivoAudio}">Baixar Música</a> | <s:a href="%{#urlExcluirArquivoMusica}">Excluir Musica</s:a>	
 							
 						</s:if>
 						<s:else>

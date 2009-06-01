@@ -9,6 +9,7 @@ import com.bandManager.Teste;
 import com.bandManager.domain.Banda;
 import com.bandManager.domain.Lancamento;
 import com.bandManager.domain.Pais;
+import com.bandManager.exception.ObjetoNaoEncontradoException;
 
 public class TesteBandaCRUDAction extends Teste {
 	
@@ -28,7 +29,7 @@ public class TesteBandaCRUDAction extends Teste {
 	}
 	
 	@Test
-	public void salvar(){
+	public void salvar() throws ObjetoNaoEncontradoException{
 		
 		//Seta a banda, salva e verifica o retorno
 		super.getBandaCRUDAction().setBanda(this.banda);

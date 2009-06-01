@@ -13,8 +13,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 
-import org.hibernate.annotations.Cascade;
-
 @Entity
 public class Banda {
 
@@ -25,6 +23,8 @@ public class Banda {
 	private Set<Lancamento> lancamentos;
 	private String anoFormacao;
 	private String release;
+	private String influencias;
+	private Set<Show> shows;
 	private Arquivo logo;
 	private Arquivo foto;
 	
@@ -99,6 +99,15 @@ public class Banda {
 	public void setRelease(String release) {
 		this.release = release;
 	}
+	
+	@Column(length = 1000)
+	public String getInfluencias() {
+		return influencias;
+	}
+
+	public void setInfluencias(String influencias) {
+		this.influencias = influencias;
+	}
 
 	public String getCidade() {
 		return cidade;
@@ -129,4 +138,15 @@ public class Banda {
 	public void setPais(Pais pais) {
 		this.pais = pais;
 	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "banda")
+	@OrderBy(value="data DESC")
+	public Set<Show> getShows() {
+		return shows;
+	}
+
+	public void setShows(Set<Show> shows) {
+		this.shows = shows;
+	}
+	
 }

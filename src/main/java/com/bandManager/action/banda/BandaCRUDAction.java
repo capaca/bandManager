@@ -5,6 +5,7 @@ import java.util.List;
 import com.bandManager.action.Action;
 import com.bandManager.domain.Banda;
 import com.bandManager.domain.Pais;
+import com.bandManager.exception.ObjetoNaoEncontradoException;
 import com.bandManager.facade.IBandaFacade;
 import com.bandManager.facade.IPaisFacade;
 
@@ -18,20 +19,29 @@ public class BandaCRUDAction extends Action {
 	
 	/* Métodos da Action */
 	
+	public String criar(){
+		this.paises = this.paisFacade.recuperarTodos();
+		return SUCCESS;
+	}
+	
 	public String salvar(){
 		this.bandaFacade.salvar(this.banda);
-		
-		this.adicionarMensagem("Banda salva com sucesso!");
 		return SUCCESS;
 	}
 	
 	public String recuperar(){
 		this.paises = this.paisFacade.recuperarTodos();
 		
-		if(this.banda!=null && this.banda.getId()>0){
-			this.banda = this.bandaFacade.recuperar(this.banda.getId());
+		if(this.banda!=null){
+			try {
+				this.banda = this.bandaFacade.recuperar(this.banda.getId());
+			} catch (ObjetoNaoEncontradoException e) {
+				return ERROR;
+			}
 		}
-		
+		else {
+			return ERROR;
+		}
 		return SUCCESS;
 	}
 

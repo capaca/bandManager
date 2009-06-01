@@ -35,8 +35,16 @@ public class FileUtil {
 	}
 	
 	public static void validarImagem(Arquivo arquivo) throws ArquivoInvalidoException {
-		if(arquivo ==null || arquivo.getFile() == null || !arquivo.getContentType().contains("image") ){
-			throw new ArquivoInvalidoException("O logo deve ser um arquivo válido do tipo imagem");
+		validarArquivo(arquivo, "image");
+	}
+	
+	public static void validarAudio(Arquivo arquivo) throws ArquivoInvalidoException {
+		validarArquivo(arquivo, "audio");
+	}
+	
+	public static void validarArquivo(Arquivo arquivo, String tipo) throws ArquivoInvalidoException{
+		if(arquivo ==null || arquivo.getFile() == null || !arquivo.getContentType().contains(tipo) ){
+			throw new ArquivoInvalidoException("O arquivo não é um arquivo válido do tipo "+tipo);
 		}
 	}
 	

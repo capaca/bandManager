@@ -21,24 +21,26 @@
 				<interceptor-ref name="messagePresenterInterceptor"/>
 			</interceptor-stack>
 		</interceptors>
-		 		
-		 <action name="editarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
+		
+		<action name="novaBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="criar">
 			<result>banda-editar.page</result>
-			<interceptor-ref name="default"/>
-		 </action>
+		</action>
+		
+		<action name="editarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
+			<result>banda-editar.page</result>
+		</action>
 		 
-		 <action name="editarLancamentos" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
+		<action name="editarLancamentos" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
 		 	<result>banda-lancamentos.page</result>
-		 </action>
+		</action>
 		 
-		 <action name="salvarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="salvar">
+		<action name="salvarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="salvar">
 			<result type="redirectAction">
-				<param name="actionName">editarLancamentos?banda.id=%{banda.id}</param>
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
 			</result>
-			<interceptor-ref name="default"/>
-		 </action>
+		</action>
 		 
-		 <action name="adicionarLogo" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="adicionarLogo">
+		<action name="adicionarLogo" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="adicionarLogo">
 			<result type="redirectAction">
 				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
 			</result>
@@ -46,8 +48,7 @@
 			<result name="error" type="redirectAction">
 				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
 			</result>
-			
-		 </action>
+		</action>
 		 
 		 <action name="excluirLogo" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="excluirLogo">
 			<result type="redirectAction">
@@ -82,25 +83,19 @@
 		</action>
 				
 		<action name="salvarLancamento" class="com.bandManager.action.lancamento.LancamentoCRUDAction" method="salvar">
-			<result type="redirectAction">
-				<param name="actionName">editarLancamentos?banda.id=%{banda.id}</param>
-			</result>
+			<result type="redirect">editarLancamento?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}</result>
 		</action>
 		
 		<action name="excluirLancamento" class="com.bandManager.action.lancamento.LancamentoCRUDAction" method="excluir">
-			<result type="chain">editarLancamentos</result>
+			<result type="redirect">editarLancamentos?banda.id=%{banda.id}</result>
 		</action>
 		
-		<action name="uploadCapa" class="com.bandManager.action.lancamento.LancamentoUploadImagensAction" method="uploadCapa">
-			<result type="redirectAction">
-				<param name="actionName">editarLancamento?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}</param>
-			</result>
+		<action name="adicionarCapa" class="com.bandManager.action.lancamento.LancamentoUploadArquivosAction" method="adicionarCapa">
+			<result type="redirect">editarLancamento?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}</result>
 		</action>
 		
-		<action name="excluirCapa" class="com.bandManager.action.lancamento.LancamentoUploadImagensAction" method="excluirCapa">
-			<result type="redirectAction">
-				<param name="actionName">editarLancamento?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}</param>
-			</result>
+		<action name="excluirCapa" class="com.bandManager.action.lancamento.LancamentoUploadArquivosAction" method="excluirCapa">
+			<result type="redirect">editarLancamento?banda.id=${banda.id}&amp;lancamento.id=${lancamento.id}</result>
 		</action>
 	</package>
 	
@@ -121,14 +116,40 @@
 		
 		<action name="salvarMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="salvar">
 			<result type="redirectAction">
-				<param name="actionName">editarLancamento?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}</param>
+				<param name="actionName">editarMusica?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}&amp;musica.id=%{musica.id}</param>
 			</result>
 		</action>
 		
-		<action name="uploadMusica" class="com.bandManager.action.musica.MusicaUploadArquivoAction" method="uploadMusica">
+		<action name="adicionarArquivoAudio" class="com.bandManager.action.musica.MusicaUploadArquivosAction" method="adicionarArquivoAudio">
 			<result type="redirectAction">
-				<param name="actionName">editarMusica?lancamento.id=%{lancamento.id}&amp;musica.id=%{musica.id}</param>
+				<param name="actionName">editarMusica?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}&amp;musica.id=%{musica.id}</param>
+			</result>
+		</action>
+		
+		<action name="excluirArquivoAudio" class="com.bandManager.action.musica.MusicaUploadArquivosAction" method="excluirArquivoAudio">
+			<result type="redirectAction">
+				<param name="actionName">editarMusica?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}&amp;musica.id=%{musica.id}</param>
 			</result>
 		</action>		
+	</package>
+	
+	<package name="show" extends="struts-default">
+		<action name="novoShow" class="com.bandManager.action.show.ShowCRUDAction" method="criar">
+			<result>show-editar.page</result>
+		</action>
+		
+		<action name="editarShow" class="com.bandManager.action.show.ShowCRUDAction" method="recuperar">
+			<result>show-editar.page</result>
+		</action>
+		
+		<action name="salvarShow" class="com.bandManager.action.show.ShowCRUDAction" method="salvar">
+			<result type="redirectAction">
+				<param name="actionName">editarShow?banda.id=%{banda.id}&amp;show.id=%{show.id}</param>
+			</result>
+		</action>
+		
+		<action name="excluirShow" class="com.bandManager.action.show.ShowCRUDAction" method="excluir">
+			<result type="redirect">editarLancamentos?banda.id=%{banda.id}</result>
+		</action>
 	</package>
 </struts>

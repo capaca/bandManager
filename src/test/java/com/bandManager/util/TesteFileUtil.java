@@ -26,7 +26,7 @@ public class TesteFileUtil {
 	@Test
 	public void removerDiretorio(){
 		
-		File diretorioImagens = new File(FileUtil.getCaminhoSitema()+"/imagens");
+		File diretorioImagens = new File(FileUtil.getCaminhoSitema()+"/bandManager/imagens");
 		assertTrue(diretorioImagens.isDirectory());
 		FileUtil.removerDiretorio(diretorioImagens);
 		assertFalse(diretorioImagens.exists());

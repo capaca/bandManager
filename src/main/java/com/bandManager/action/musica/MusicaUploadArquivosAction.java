@@ -3,82 +3,84 @@ package com.bandManager.action.musica;
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.struts2.ServletActionContext;
-
 import com.bandManager.action.Action;
+import com.bandManager.domain.Arquivo;
+import com.bandManager.domain.Banda;
 import com.bandManager.domain.Lancamento;
 import com.bandManager.domain.Musica;
+import com.bandManager.exception.ArquivoInvalidoException;
 import com.bandManager.facade.IMusicaFacade;
 import com.bandManager.util.FileUtil;
 
-public class MusicaUploadArquivoAction extends Action {
+public class MusicaUploadArquivosAction extends Action {
 
-	private static final String DIR_MUSICA_ARQUIVO = "musica/arquivo/";
+	private static final String DIR_MUSICA_ARQUIVO = "audio/";
 	private File arquivo;
 	private String arquivoFileName;
 	private String arquivoContentType;
 	private Musica musica;
 	private Lancamento lancamento;
+	private Banda banda;
 	
 	private IMusicaFacade musicaFacade;
 	
-	public String uploadMusica(){
-		
-		if(this.arquivo == null){
-			return ERROR;
-		}
-		
+	public String adicionarArquivoAudio() {
+		//Recupera a musica
 		this.musica = this.musicaFacade.recuperar(this.musica.getId());
 		this.lancamento = this.musica.getLancamento();
 		
-		//Verifica se já existe um logo valido
-		if(this.musica.getArquivo()!=null && this.musica.getArquivo().trim()!=""){
-			
-			//Monta o caminho do arquivo
-			String caminhoArquivo = ServletActionContext.getServletContext().getRealPath(this.musica.getArquivo());
-			
-			try {
-				//Exclui o arquivo
-				FileUtil.excluirArquivo(caminhoArquivo);
-				
-			} catch (IOException e) {
-				return ERROR;
-			}
-		}
+		//Pega o caminho completo do arquivo
+		String nomeArquivo = this.montarNomeArquivo(arquivoFileName); 
 		
-		//Monta o caminho do arquivo
-		StringBuilder sb = new StringBuilder();
-		sb.append(this.lancamento.getBanda().getNome().replace(" ", ""));
-		sb.append(" - ");
-		sb.append(this.lancamento.getNome().replace(" ", ""));
-		sb.append(" - ");
-		sb.append(this.musica.getNome().replace(" ", ""));
-		sb.append(this.musica.getId());
-		sb.append(".");
-		sb.append(FileUtil.getExtensaoArquivo(this.arquivoFileName));
+		//Instancia o arquivo
+		Arquivo arquivoAudio = new Arquivo(nomeArquivo, arquivoContentType, this.arquivo, DIR_MUSICA_ARQUIVO);
 		
-		String caminhoArquivo = ServletActionContext.getServletContext().getRealPath(DIR_MUSICA_ARQUIVO+sb);
-		
-		//Faz o upload
+		//Tenta adicionar o logo
 		try {
-			//Move o arquivo para o servidor
-			FileUtil.subirArquivo(this.arquivo, caminhoArquivo);
+			this.musica = this.musicaFacade.adicionarArquivoMusica(this.musica, arquivoAudio, FileUtil.getCaminhoSitema());
 			
-			//Seta o caminho do arquivo e salva a banda
-			this.musica.setArquivo(DIR_MUSICA_ARQUIVO+sb);
-			this.musicaFacade.salvar(this.musica);
+		} catch (ArquivoInvalidoException e) {
+			return ERROR;
 			
 		} catch (IOException e) {
 			return ERROR;
 		}
-		
+			
 		return SUCCESS;
+	}
+	
+	public String excluirArquivoAudio(){
+		//Recupera o lancamento e a banda
+		this.musica = this.musicaFacade.recuperar(this.musica.getId());
+		this.lancamento = this.musica.getLancamento();
+		
+		try {
+			this.musicaFacade.excluirArquivoMusica(musica, FileUtil.getCaminhoSitema());
+		} catch (IOException e) {
+			return ERROR;
+		} 
+
+		return SUCCESS;
+	}
+
+	private String montarNomeArquivo(String arquivoFileName) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(musica.getLancamento().getBanda().getNome());
+		sb.append("-");
+		sb.append(musica.getLancamento().getNome());
+		sb.append("-");
+		sb.append(musica.getNome());
+		sb.append(musica.getId());
+		sb.append(".");
+		sb.append(FileUtil.getExtensaoArquivo(arquivoFileName));
+		return sb.toString();
 	}
 
 	/*
 	 * Getters and Setters
 	 */
 	
+
 	public File getArquivo() {
 		return arquivo;
 	}
@@ -125,5 +127,13 @@ public class MusicaUploadArquivoAction extends Action {
 
 	public void setMusicaFacade(IMusicaFacade musicaFacade) {
 		this.musicaFacade = musicaFacade;
+	}
+
+	public Banda getBanda() {
+		return banda;
+	}
+
+	public void setBanda(Banda banda) {
+		this.banda = banda;
 	}
 }

@@ -21,11 +21,11 @@
 		<property name="bandaFacade" ref="bandaFacade" />
     </bean>
     
-    <bean id="lancamentoUploadImagensAction" class="com.bandManager.action.lancamento.LancamentoUploadImagensAction">
+    <bean id="lancamentoUploadArquivosAction" class="com.bandManager.action.lancamento.LancamentoUploadArquivosAction">
 		<property name="lancamentoFacade" ref="lancamentoFacade" />
     </bean>
     
-    <bean id="musicaUploadArquivoAction" class="com.bandManager.action.musica.MusicaUploadArquivoAction">
+    <bean id="musicaUploadArquivosAction" class="com.bandManager.action.musica.MusicaUploadArquivosAction">
 		<property name="musicaFacade" ref="musicaFacade" />
     </bean>
     

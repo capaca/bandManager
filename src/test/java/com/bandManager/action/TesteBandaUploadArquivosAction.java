@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import com.bandManager.TesteUtil;
 import com.bandManager.domain.Banda;
+import com.bandManager.exception.ObjetoNaoEncontradoException;
 import com.bandManager.util.FileUtil;
 
 public class TesteBandaUploadArquivosAction extends TesteUtil {
@@ -29,7 +30,7 @@ public class TesteBandaUploadArquivosAction extends TesteUtil {
 	}
 	
 	@Test
-	public void adicionarLogo(){
+	public void adicionarLogo() throws ObjetoNaoEncontradoException{
 		//Verifica que o arquivo a ser transferido existe
 		assertTrue(this.logo.exists());
 		
@@ -56,7 +57,7 @@ public class TesteBandaUploadArquivosAction extends TesteUtil {
 	}
 	
 	@Test
-	public void excluirLogo(){
+	public void excluirLogo() throws ObjetoNaoEncontradoException{
 		//Verifica que o arquivo a ser transferido existe
 		assertTrue(this.logo.exists());
 		
@@ -81,15 +82,15 @@ public class TesteBandaUploadArquivosAction extends TesteUtil {
 	}
 	
 	@Test
-	public void adicionarFoto(){
+	public void adicionarFoto() throws ObjetoNaoEncontradoException{
 		//Verifica que o arquivo a ser transferido existe
 		assertTrue(this.foto.exists());
 		
 		//Seta os atributos para adicionar a foto
 		super.getBandaUploadArquivosAction().setBanda(banda);
-		super.getBandaUploadArquivosAction().setLogo(this.foto);
-		super.getBandaUploadArquivosAction().setLogoContentType("image");
-		super.getBandaUploadArquivosAction().setLogoFileName("foto.jpg");
+		super.getBandaUploadArquivosAction().setFoto(this.foto);
+		super.getBandaUploadArquivosAction().setFotoContentType("image");
+		super.getBandaUploadArquivosAction().setFotoFileName("foto.jpg");
 		
 		//Adiciona o logo
 		assertEquals(Action.SUCCESS, super.getBandaUploadArquivosAction().adicionarFoto());
@@ -106,15 +107,15 @@ public class TesteBandaUploadArquivosAction extends TesteUtil {
 	}
 	
 	@Test
-	public void excluirFoto(){
+	public void excluirFoto() throws ObjetoNaoEncontradoException{
 		//Verifica que o arquivo a ser transferido existe
 		assertTrue(this.logo.exists());
 		
 		//Seta os atributos para adicionar o logo
 		super.getBandaUploadArquivosAction().setBanda(banda);
-		super.getBandaUploadArquivosAction().setLogo(this.foto);
-		super.getBandaUploadArquivosAction().setLogoContentType("image");
-		super.getBandaUploadArquivosAction().setLogoFileName("foto.jpg");
+		super.getBandaUploadArquivosAction().setFoto(this.foto);
+		super.getBandaUploadArquivosAction().setFotoContentType("image");
+		super.getBandaUploadArquivosAction().setFotoFileName("foto.jpg");
 		
 		//Adiciona o logo
 		assertEquals(Action.SUCCESS, super.getBandaUploadArquivosAction().adicionarFoto());

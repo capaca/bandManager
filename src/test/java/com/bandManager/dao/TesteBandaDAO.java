@@ -10,6 +10,7 @@ import com.bandManager.Teste;
 import com.bandManager.domain.Banda;
 import com.bandManager.domain.Lancamento;
 import com.bandManager.domain.Pais;
+import com.bandManager.exception.ObjetoNaoEncontradoException;
 
 public class TesteBandaDAO extends Teste {
 	
@@ -72,7 +73,7 @@ public class TesteBandaDAO extends Teste {
 	}
 	
 	@Test
-	public void recuperar(){
+	public void recuperar() throws ObjetoNaoEncontradoException{
 		//Instancia a banda e seta os atributos
 		Banda banda = new Banda(BANDA_NOME, BANDA_CIDADE, this.pais, BANDA_ANO_FORMACAO, BANDA_RELEASE);
 		

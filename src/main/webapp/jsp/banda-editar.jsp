@@ -61,6 +61,14 @@
 			</tr>
 			<tr>
 				<th valign="top">
+					Influências:
+				</th>
+				<td colspan="3">
+					<s:textarea name="banda.influencias" label="Release" cols="80" rows="3" required="true" theme="simple"/>
+				</td>
+			</tr>
+			<tr>
+				<th valign="top">
 					Release:
 				</th>
 				<td colspan="3">

@@ -25,7 +25,7 @@ public class TesteMusicaDAO extends Teste {
 	@Test
 	public void salvar(){
 		//Instancia a musica
-		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA, MUSICA_ARQUIVO, lancamento);
+		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA, lancamento);
 		
 		//Salva a musica
 		Musica musicaSalva = super.getMusicaDAO().salvar(musica);
@@ -33,13 +33,13 @@ public class TesteMusicaDAO extends Teste {
 		//Verifica se a musica foi salva
 		assertNotNull(musicaSalva);
 		assertTrue(musicaSalva.getId()>0);
-		verificarAtributos(musicaSalva);
+		verificarAtributos(musica, musicaSalva);
 	}
 	
 	@Test
 	public void recuperar(){
 		//Instancia a musica
-		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA, MUSICA_ARQUIVO, lancamento);
+		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA, lancamento);
 		
 		//Salva a musica
 		Musica musicaSalva = super.getMusicaDAO().salvar(musica);
@@ -51,13 +51,13 @@ public class TesteMusicaDAO extends Teste {
 		assertNotNull(musicaRecuperada);
 		assertTrue(musicaRecuperada.getId()>0);
 		assertEquals(musica.getId(), musicaRecuperada.getId());
-		verificarAtributos(musicaRecuperada);
+		verificarAtributos(musica, musicaRecuperada);
 	}
 	
 	@Test
 	public void excluir(){
 		//Instancia a musica
-		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA, MUSICA_ARQUIVO, lancamento);
+		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA, lancamento);
 		
 		//Salva a musica
 		Musica musicaSalva = super.getMusicaDAO().salvar(musica);
@@ -70,12 +70,5 @@ public class TesteMusicaDAO extends Teste {
 		
 		//Verifica se a musica foi excluida
 		assertNull(musicaRecuperada);
-	}
-	
-	private void verificarAtributos(Musica musica){
-		assertEquals(MUSICA_NOME, musica.getNome());
-		assertEquals(MUSICA_NUMERO, musica.getNumero());
-		assertEquals(MUSICA_LETRA, musica.getLetra());
-		assertEquals(MUSICA_ARQUIVO, musica.getArquivo());
 	}
 }

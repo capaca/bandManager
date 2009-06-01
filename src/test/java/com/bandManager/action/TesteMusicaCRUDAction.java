@@ -18,7 +18,7 @@ public class TesteMusicaCRUDAction extends Teste {
 		super.getLancamentoCRUDAction().salvar();
 		
 		//Instancia e salva a musica
-		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA,MUSICA_ARQUIVO,lancamento);
+		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA, lancamento);
 		super.getMusicaCRUDAction().setMusica(musica);
 		assertEquals(Action.SUCCESS, super.getMusicaCRUDAction().salvar());
 	}
@@ -31,7 +31,7 @@ public class TesteMusicaCRUDAction extends Teste {
 		super.getLancamentoCRUDAction().salvar();
 		
 		//Instancia e salva a musica
-		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA,MUSICA_ARQUIVO,lancamento);
+		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA, lancamento);
 		super.getMusicaCRUDAction().setMusica(musica);
 		super.getMusicaCRUDAction().salvar();
 		assertEquals(Action.SUCCESS, super.getMusicaCRUDAction().recuperar());
@@ -45,7 +45,7 @@ public class TesteMusicaCRUDAction extends Teste {
 		super.getLancamentoCRUDAction().salvar();
 		
 		//Instancia e salva a musica
-		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA,MUSICA_ARQUIVO,lancamento);
+		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA, lancamento);
 		super.getMusicaCRUDAction().setMusica(musica);
 		super.getMusicaCRUDAction().salvar();
 		assertEquals(Action.SUCCESS, super.getMusicaCRUDAction().excluir());

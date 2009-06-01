@@ -6,16 +6,19 @@ import javax.persistence.EntityManagerFactory;
 import com.bandManager.action.banda.BandaCRUDAction;
 import com.bandManager.action.banda.BandaUploadArquivosAction;
 import com.bandManager.action.lancamento.LancamentoCRUDAction;
+import com.bandManager.action.lancamento.LancamentoUploadArquivosAction;
 import com.bandManager.action.musica.MusicaCRUDAction;
+import com.bandManager.action.musica.MusicaUploadArquivosAction;
 import com.bandManager.dao.IBandaDAO;
 import com.bandManager.dao.ILancamentoDAO;
 import com.bandManager.dao.IMusicaDAO;
 import com.bandManager.dao.IPaisDAO;
+import com.bandManager.dao.IShowDAO;
 import com.bandManager.facade.IBandaFacade;
 import com.bandManager.facade.ILancamentoFacade;
 import com.bandManager.facade.IMusicaFacade;
 import com.bandManager.facade.IPaisFacade;
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
+import com.bandManager.facade.IShowFacade;
 
 public class Dependencias extends Spring {
 
@@ -24,18 +27,22 @@ public class Dependencias extends Spring {
 	private static ILancamentoDAO lancamentoDAO;
 	private static IBandaDAO bandaDAO;
 	private static IPaisDAO paisDAO;
+	private static IShowDAO showDAO;
 	
 //==/* Facades */==========================================================================================================================
 	private static IBandaFacade bandaFacade;
 	private static IPaisFacade paisFacade;
 	private static ILancamentoFacade lancamentoFacade;
 	private static IMusicaFacade musicaFacade;
+	private static IShowFacade showFacade;
 	
 //==/* Actions */==========================================================================================================================
 	private static BandaCRUDAction bandaCRUDAction;
 	private static LancamentoCRUDAction lancamentoCRUDAction;
 	private static MusicaCRUDAction musicaCRUDAction;
 	private static BandaUploadArquivosAction bandaUploadArquivosAction;
+	private static LancamentoUploadArquivosAction lancamentoUploadArquivosAction;
+	private static MusicaUploadArquivosAction musicaUploadArquivosAction;
 	
 //==/* Entity Manager */======================================================================================================
 	private static EntityManagerFactory entityManagerFactory;
@@ -83,6 +90,13 @@ public class Dependencias extends Spring {
 		return paisDAO;
 	}
 	
+	public static IShowDAO getShowDAO(){
+		if(showDAO == null)
+			showDAO = (IShowDAO) Spring.getContext().getBean("showDAO");
+		
+		return showDAO;
+	}
+	
 //==/* Getters Facade */===================================================================================================================
 	public static IMusicaFacade getMusicaFacade(){
 		if(musicaFacade==null)
@@ -112,6 +126,13 @@ public class Dependencias extends Spring {
 		return paisFacade;
 	}
 	
+	public static IShowFacade getShowFacade() {
+		if(showFacade==null)
+			showFacade = (IShowFacade) Spring.getContext().getBean("showFacade");
+			
+		return showFacade;
+	}
+	
 	//==/* Getters Action */===================================================================================================================
 	public static BandaCRUDAction getBandaCRUDAction(){
 		if(bandaCRUDAction==null)
@@ -139,6 +160,20 @@ public class Dependencias extends Spring {
 			bandaUploadArquivosAction = (BandaUploadArquivosAction) Spring.getContext().getBean("bandaUploadArquivosAction");
 		
 		return bandaUploadArquivosAction;
+	}
+	
+	public static LancamentoUploadArquivosAction getLancamentoUploadArquivosAction(){
+		if(lancamentoUploadArquivosAction==null)
+			lancamentoUploadArquivosAction = (LancamentoUploadArquivosAction) Spring.getContext().getBean("lancamentoUploadArquivosAction");
+		
+		return lancamentoUploadArquivosAction;
+	}
+	
+	public static MusicaUploadArquivosAction getMusicaUploadArquivosAction(){
+		if(musicaUploadArquivosAction==null)
+			musicaUploadArquivosAction = (MusicaUploadArquivosAction) Spring.getContext().getBean("musicaUploadArquivosAction");
+		
+		return musicaUploadArquivosAction;
 	}
 
 }

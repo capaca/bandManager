@@ -1,10 +1,12 @@
 package com.bandManager.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -14,18 +16,17 @@ public class Musica  {
 	private String nome;
 	private int numero;
 	private String letra;
-	private String arquivo;
+	private Arquivo arquivoAudio;
 	private Lancamento lancamento;
 	
 	public Musica(){
 		
 	}
 
-	public Musica(String nome, int numero, String letra, String arquivo, Lancamento lancamento) {
+	public Musica(String nome, int numero, String letra, Lancamento lancamento) {
 		this.nome = nome;
 		this.numero = numero;
 		this.letra = letra;
-		this.arquivo = arquivo;
 		this.lancamento = lancamento;
 	}
 
@@ -55,14 +56,6 @@ public class Musica  {
 		this.letra = letra;
 	}
 
-	public String getArquivo() {
-		return arquivo;
-	}
-
-	public void setArquivo(String arquivo) {
-		this.arquivo = arquivo;
-	}
-
 	@ManyToOne
 	public Lancamento getLancamento() {
 		return lancamento;
@@ -78,5 +71,14 @@ public class Musica  {
 
 	public void setNumero(int numero) {
 		this.numero = numero;
+	}
+
+	@OneToOne(cascade = CascadeType.ALL)
+	public Arquivo getArquivoAudio() {
+		return arquivoAudio;
+	}
+
+	public void setArquivoAudio(Arquivo arquivoAudio) {
+		this.arquivoAudio = arquivoAudio;
 	}
 }

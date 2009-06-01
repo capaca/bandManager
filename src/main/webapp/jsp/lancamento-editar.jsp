@@ -66,49 +66,53 @@
 		</table>
 	</s:form>
 	
-	<table class="form">
-		<tr>
-			<th>
-				Capa:
-			</th>
-			<td>
-				<s:file  name="capa" theme="simple"/>
-				<s:submit value="Upload" theme="simple"/>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			</td>
-			<s:if test="%{lancamento.capa != null && lancamento.capa != ''}">
-				<td>
-					<s:url id="urlExcluirCapa" action="excluirCapa">
-						<s:param value="%{lancamento.id}" name="lancamento.id"/>
-					</s:url>
-					
-					<a href="${lancamento.capa}">Ver Capa</a>
-					<s:a href="%{#urlExcluirCapa}">Excluir Capa</s:a>	
-				</td>
-			</s:if>
-			<s:else>
-				<td>
-					<em>Nenhuma Capa adicionada.</em>	
-				</td>
-			</s:else>
-		</tr>
-		<s:if test="%{lancamento.id>0}">
-			<tr>
-				<td>
-				</td>
-				<td>
-					<s:url id="urlAdicionarMusica" value="adicionarMusica">
-						<s:param name="lancamento.id" value="lancamento.id"/>
-						<s:param name="banda.id" value="banda.id"/>
-					</s:url>
-					<s:a href="%{#urlAdicionarMusica}">Adicionar Música</s:a>
-				</td>
-			</tr>
-		</s:if>
-	</table>
+	<s:if test="%{lancamento.id>0}">
+		<s:form action="adicionarCapa" method="post"enctype="multipart/form-data">
+			<s:hidden name="banda.id" value="%{banda.id}" />
+			<s:hidden name="lancamento.id" value="%{lancamento.id}" />
+			
+			<table class="form">
+				<tr>
+					<th>
+						Capa:
+					</th>
+					<td>
+						<s:file  name="capa" theme="simple"/>
+						<s:submit value="Upload" theme="simple"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<s:if test="%{lancamento.capa != null}">
+						<td>
+							<s:url id="urlExcluirCapa" action="excluirCapa">
+								<s:param value="%{lancamento.id}" name="lancamento.id"/>
+							</s:url>
+							<a href="${lancamento.capa}" target="_blank">Ver Capa</a> | 
+							<s:a href="%{#urlExcluirCapa}">Excluir Capa</s:a>	
+						</td>
+					</s:if>
+					<s:else>
+						<td>
+							<em>Nenhuma Capa adicionada.</em>	
+						</td>
+					</s:else>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						<s:url id="urlAdicionarMusica" value="adicionarMusica">
+							<s:param name="lancamento.id" value="lancamento.id"/>
+							<s:param name="banda.id" value="banda.id"/>
+						</s:url>
+						<s:a href="%{#urlAdicionarMusica}">Adicionar Música</s:a>
+					</td>
+				</tr>
+			</table>
+		</s:form>
+	</s:if>
 	
 	<s:if test="%{lancamento.id>0}">
 		<h2>Músicas</h2>

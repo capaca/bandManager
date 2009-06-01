@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 
 @Entity
@@ -22,7 +23,7 @@ public class Lancamento {
 	private Set<Musica> musicas;
 	private String informacoes;
 	private Banda banda;
-	private String capa;
+	private Arquivo capa;
 	
 	public Lancamento(){
 		
@@ -87,11 +88,12 @@ public class Lancamento {
 		this.banda = banda;
 	}
 
-	public String getCapa() {
+	@OneToOne(cascade = CascadeType.ALL)
+	public Arquivo getCapa() {
 		return capa;
 	}
 
-	public void setCapa(String capa) {
+	public void setCapa(Arquivo capa) {
 		this.capa = capa;
 	}	
 }
