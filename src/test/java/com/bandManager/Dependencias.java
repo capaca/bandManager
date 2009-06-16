@@ -9,6 +9,7 @@ import com.bandManager.action.lancamento.LancamentoCRUDAction;
 import com.bandManager.action.lancamento.LancamentoUploadArquivosAction;
 import com.bandManager.action.musica.MusicaCRUDAction;
 import com.bandManager.action.musica.MusicaUploadArquivosAction;
+import com.bandManager.action.show.ShowCRUDAction;
 import com.bandManager.dao.IBandaDAO;
 import com.bandManager.dao.ILancamentoDAO;
 import com.bandManager.dao.IMusicaDAO;
@@ -43,6 +44,7 @@ public class Dependencias extends Spring {
 	private static BandaUploadArquivosAction bandaUploadArquivosAction;
 	private static LancamentoUploadArquivosAction lancamentoUploadArquivosAction;
 	private static MusicaUploadArquivosAction musicaUploadArquivosAction;
+	private static ShowCRUDAction showCRUDAction;
 	
 //==/* Entity Manager */======================================================================================================
 	private static EntityManagerFactory entityManagerFactory;
@@ -176,4 +178,9 @@ public class Dependencias extends Spring {
 		return musicaUploadArquivosAction;
 	}
 
+	public static ShowCRUDAction getShowCRUDAction() {
+		if(showCRUDAction==null)
+				showCRUDAction = (ShowCRUDAction) Spring.getContext().getBean("showCRUDAction");
+		return showCRUDAction;
+	}
 }

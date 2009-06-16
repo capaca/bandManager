@@ -1,6 +1,10 @@
 package com.bandManager.dao;
 
+import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.Before;
@@ -109,6 +113,23 @@ public class TesteBandaDAO extends Teste {
 
 		//Verifica se a banda foi salva corretamente
 		this.utilVerificarAtributos(banda, bandaSalva);
+	}
+	
+	@Test
+	public void recuperarTodas(){
+		Banda destruction = utilCriarBanda("Destruction");
+		Banda sodom =utilCriarBanda("Sodom");
+		Banda kreator =utilCriarBanda("Kreator");
+		
+		List<Banda> bandas = new ArrayList<Banda>();
+		bandas.add(destruction);
+		bandas.add(sodom);
+		bandas.add(kreator);
+		
+		List<Banda> bandasRecuperadas = super.getBandaDAO().recuperarTodas();
+		
+		assertEquals(3, bandas.size());
+		utilVerificarAtributos(bandas, bandasRecuperadas);
 	}
 	
 }

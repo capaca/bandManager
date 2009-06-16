@@ -4,6 +4,18 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<SCRIPT type="text/javascript">
+	$(function() {
+		$('#showData').datepicker();
+		$('#showData').datepicker('option', {dateFormat: 'dd/mm/yy'});
+	});
+</SCRIPT>
+</head>
+
 	<h1>Editar 
 		<s:if test="%{banda!=null && banda.nome != ''}">
 			<s:property value="show.nome"/>
@@ -38,7 +50,7 @@
 				</th>
 				<td>
 					<s:date  id="dataShow" name="show.data" format="dd/MM/yyyy"/>
-					<s:textfield name="show.data" value="%{dataShow}" required="true" theme="simple"/>
+					<s:textfield id="showData" name="show.data" value="%{dataShow}" required="true" theme="simple"/>
 				</td>
 			</tr>
 			<tr>
@@ -89,10 +101,10 @@
 		</table>
 	</s:form>
 	
-	<p align="center">
-		<s:url id="urlEditarLancamentos" action="editarLancamentos">
-			<s:param name="banda.id" value="%{banda.id}" />
-		</s:url>
-		
-		<s:a href="%{#urlEditarLancamentos}">Voltar</s:a>
-	</p>
+	<s:url id="urlEditarLancamentos" action="editarLancamentos">
+		<s:param name="banda.id" value="%{banda.id}" />
+	</s:url>
+	
+	<br><br>
+	
+	<s:a href="%{#urlEditarLancamentos}" cssClass="botao_voltar">Voltar</s:a>

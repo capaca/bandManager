@@ -3,6 +3,8 @@ package com.bandManager;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.List;
+
 import com.bandManager.domain.Arquivo;
 import com.bandManager.domain.Banda;
 import com.bandManager.domain.Lancamento;
@@ -65,6 +67,15 @@ public class TesteUtil extends Dependencias{
 	}
 	
 	/**
+	 * Cria uma banda com o nome passado por parâmetro e salva.
+	 */
+	protected Banda utilCriarBanda(String nome) {
+		Pais pais = utilCriarPais(PAIS_NOME);
+		Banda banda = new Banda(nome, pais, BANDA_CIDADE, BANDA_ANO_FORMACAO, BANDA_RELEASE);
+		return getBandaFacade().salvar(banda);
+	}
+	
+	/**
 	 * Verifica os atributos da {@link Banda} a partir das constantes da classe.
 	 * @param banda
 	 */
@@ -74,6 +85,16 @@ public class TesteUtil extends Dependencias{
 		assertEquals(bandaEsperada.getRelease(), bandaAtual.getRelease());
 		assertEquals(bandaEsperada.getCidade(), bandaAtual.getCidade());
 		assertEquals(bandaEsperada.getPais().getNome(), bandaAtual.getPais().getNome());
+	}
+	
+	/**
+	 * Verifica os atributos de um conjunto de {@link Banda}s.
+	 * @param banda
+	 */
+	protected void utilVerificarAtributos(List<Banda> bandasEsperadas, List<Banda> bandas){
+		for(int i=0; i<bandas.size(); i++){
+			this.utilVerificarAtributos(bandasEsperadas.get(i), bandas.get(i));
+		}
 	}
 	
 //==/* Pais */=================================================================================================================

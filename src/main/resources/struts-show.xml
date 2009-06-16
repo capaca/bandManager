@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+    
+<struts>
+	<package name="show" extends="struts-default">
+		<action name="novoShow" class="com.bandManager.action.show.ShowCRUDAction" method="criar">
+			<result>show-editar.page</result>
+		</action>
+		
+		<action name="editarShow" class="com.bandManager.action.show.ShowCRUDAction" method="recuperar">
+			<result>show-editar.page</result>
+		</action>
+		
+		<action name="salvarShow" class="com.bandManager.action.show.ShowCRUDAction" method="salvar">
+			<result type="redirectAction">
+				<param name="actionName">editarShow?banda.id=%{banda.id}&amp;show.id=%{show.id}</param>
+			</result>
+		</action>
+		
+		<action name="excluirShow" class="com.bandManager.action.show.ShowCRUDAction" method="excluir">
+			<result type="redirect">editarLancamentos?banda.id=%{banda.id}</result>
+		</action>
+	</package>
+</struts>

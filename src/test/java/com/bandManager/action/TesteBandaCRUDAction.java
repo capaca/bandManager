@@ -2,6 +2,9 @@ package com.bandManager.action;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,26 +16,13 @@ import com.bandManager.exception.ObjetoNaoEncontradoException;
 
 public class TesteBandaCRUDAction extends Teste {
 	
-	private Pais pais;
-	private Lancamento lancamento1;
-	private Lancamento lancamento2;
-	private Banda banda;
-	
-	@Before
-	public void preparacao(){
-		this.pais = utilCriarPais("Brasil");
-		
-		this.banda = utilCriarBanda(pais);
-		
-		this.lancamento1 = utilCriarLancamento(banda);
-		this.lancamento2 = utilCriarLancamento(banda);
-	}
-	
 	@Test
 	public void salvar() throws ObjetoNaoEncontradoException{
 		
+		Banda banda = utilCriarBanda();
+		
 		//Seta a banda, salva e verifica o retorno
-		super.getBandaCRUDAction().setBanda(this.banda);
+		super.getBandaCRUDAction().setBanda(banda);
 		assertEquals(Action.SUCCESS, super.getBandaCRUDAction().salvar());
 		
 		//Recupera a banda e verifica
@@ -44,6 +34,9 @@ public class TesteBandaCRUDAction extends Teste {
 	
 	@Test
 	public void recuperar(){
+		
+		Pais pais = utilCriarPais("Brasil");
+		Banda banda = utilCriarBanda();
 		
 		//Seta a banda, salva e verifica o retorno
 		super.getBandaCRUDAction().setBanda(banda);
@@ -57,6 +50,24 @@ public class TesteBandaCRUDAction extends Teste {
 		
 		//Verifica o pais
 		assertEquals(1, super.getBandaCRUDAction().getPaises().size());
-		assertEquals(this.pais.getNome(), super.getBandaCRUDAction().getPaises().get(0).getNome());
+		assertEquals(pais.getNome(), super.getBandaCRUDAction().getPaises().get(0).getNome());
+	}
+	
+	@Test
+	public void recuperarTodas(){
+		Banda destruction = utilCriarBanda("Destruction");
+		Banda sodom =utilCriarBanda("Sodom");
+		Banda kreator =utilCriarBanda("Kreator");
+		
+		List<Banda> bandas = new ArrayList<Banda>();
+		bandas.add(destruction);
+		bandas.add(sodom);
+		bandas.add(kreator);
+		
+		assertEquals(Action.SUCCESS, super.getBandaCRUDAction().recuperarTodas());
+		List<Banda> bandasRecuperadas = super.getBandaCRUDAction().getBandas();
+		
+		assertEquals(3, bandas.size());
+		utilVerificarAtributos(bandas, bandasRecuperadas);
 	}
 }

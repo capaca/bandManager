@@ -15,6 +15,7 @@ public class BandaCRUDAction extends Action {
 	private IBandaFacade bandaFacade;
 	private IPaisFacade paisFacade;
 	private Banda banda;
+	private List<Banda> bandas;
 	private List<Pais> paises;
 	
 	/* Métodos da Action */
@@ -42,6 +43,11 @@ public class BandaCRUDAction extends Action {
 		else {
 			return ERROR;
 		}
+		return SUCCESS;
+	}
+	
+	public String recuperarTodas(){
+		this.bandas = this.bandaFacade.recuperarTodas();
 		return SUCCESS;
 	}
 
@@ -77,5 +83,13 @@ public class BandaCRUDAction extends Action {
 
 	public void setPaisFacade(IPaisFacade paisFacade) {
 		this.paisFacade = paisFacade;
+	}
+
+	public List<Banda> getBandas() {
+		return bandas;
+	}
+
+	public void setBandas(List<Banda> bandas) {
+		this.bandas = bandas;
 	}
 }

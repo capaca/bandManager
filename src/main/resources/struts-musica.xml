@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="musica" extends="struts-default">
+		<action name="adicionarMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="recuperar">
+			<result>musica-editar.page</result>
+		</action>
+		
+		<action name="editarMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="recuperar">
+			<result>musica-editar.page</result>
+		</action>
+		
+		<action name="excluirMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="excluir">
+			<result type="redirectAction">
+				<param name="actionName">editarLancamento?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}</param>
+			</result>
+		</action>
+		
+		<action name="salvarMusica" class="com.bandManager.action.musica.MusicaCRUDAction" method="salvar">
+			<result type="redirectAction">
+				<param name="actionName">editarMusica?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}&amp;musica.id=%{musica.id}</param>
+			</result>
+		</action>
+		
+		<action name="adicionarArquivoAudio" class="com.bandManager.action.musica.MusicaUploadArquivosAction" method="adicionarArquivoAudio">
+			<result type="redirectAction">
+				<param name="actionName">editarMusica?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}&amp;musica.id=%{musica.id}</param>
+			</result>
+		</action>
+		
+		<action name="excluirArquivoAudio" class="com.bandManager.action.musica.MusicaUploadArquivosAction" method="excluirArquivoAudio">
+			<result type="redirectAction">
+				<param name="actionName">editarMusica?banda.id=%{banda.id}&amp;lancamento.id=%{lancamento.id}&amp;musica.id=%{musica.id}</param>
+			</result>
+		</action>		
+	</package>
+</struts>

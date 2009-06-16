@@ -2,6 +2,7 @@
 body {
 	margin: auto;
 	padding: 0;
+	padding-bottom: 20px;
 	background: #000000 url(images/img01.jpg) repeat left top;
 	font-family: sans-serif;
 	font-size: 13px;
@@ -14,6 +15,7 @@ h1, h2, h3 {
 	font-family: serif;
 	font-weight: normal;
 	color: #D53707;
+	text-align: left;
 }
 
 h1 { 
@@ -36,11 +38,11 @@ input, textarea {
 }
 
 .form {
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .form th{
-	text-align: right;
+	text-align: left;
 	padding-left: 20px;
 	font-style: italic;
 }
@@ -52,6 +54,7 @@ input, textarea {
 .listagem th{
 	background-color: #D53707;
 	color: black;
+	text-align: center;
 }
 
 .listagem td{
@@ -102,6 +105,70 @@ hr { display: none; }
 	padding: 5px 10px 5px 10px;
 	background: #FF6600;
 	color: #000000;
+}
+
+.sub_conteudo{
+	text-align: center;
+	margin-left: 30px;
+	border: 1px dashed #837669;
+	padding: 10px 0px 10px 0px;
+}
+
+.img_perfil{
+	margin: 10px;
+}
+
+/* Botoes */
+.botao_adicionar, .botao_editar, .botao_voltar {
+	background-color: #D53707;
+	padding: 0px 5px 0px 20px;
+	color: black;
+	height: 20px;
+	text-decoration: none;
+	border: 1px solid #333;
+}
+
+.botao_adicionar:hover, .botao_editar:hover, .botao_voltar:hover {
+	background-color: #A20404;
+	padding: 0px 5px 0px 20px;
+	color: black;
+	height: 20px;
+	text-decoration: none;
+	border: 1px solid #333;
+}
+
+.botao_adicionar  {
+	background: #D53707 url(images/icon_add.png) no-repeat 2px 1px;
+}
+
+.botao_adicionar:hover  {
+	background: #A20404 url(images/icon_add.png) no-repeat 2px 1px;
+}
+
+.botao_editar {
+	background: #D53707 url(images/icon_edit.png) no-repeat 2px 1px;
+}
+
+.botao_editar:hover {
+	background: #A20404 url(images/icon_edit.png) no-repeat 2px 1px;
+}
+
+.botao_voltar {
+	background: #D53707 url(images/icon_back.png) no-repeat 2px 1px;
+	padding-bottom: 2px;
+	padding-top: 1px;
+}
+
+.botao_voltar:hover {
+	background: #A20404 url(images/icon_back.png) no-repeat 2px 1px;
+	padding-bottom: 2px;
+	padding-top: 1px;
+}
+
+.botao_mais{
+	width: 20px;
+	height: 20px;
+	background: url(images/icon_plus.png) no-repeat 2px 1px;
 }
 
 /* Header */
@@ -163,5 +230,7 @@ hr { display: none; }
 #page {
 	margin: 0 auto;
 	padding: 0 40px;
+	width: 90%;
+	text-align: left;
 }
 

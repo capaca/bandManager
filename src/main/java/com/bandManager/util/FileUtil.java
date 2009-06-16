@@ -2,10 +2,8 @@ package com.bandManager.util;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.struts2.ServletActionContext;
 
 import com.bandManager.domain.Arquivo;
 import com.bandManager.exception.ArquivoInvalidoException;
@@ -51,8 +49,6 @@ public class FileUtil {
 	public static String getCaminhoSitema(){
 		String caminho = FileUtil.class.getResource("/struts.xml").getPath();
 		caminho = caminho.replaceAll("/classes/struts.xml", "").replaceAll("/WEB-INF", "");
-		
-		System.out.println("Caminho do sistema: "+caminho);
 		
 		return caminho;
 	}

@@ -31,13 +31,20 @@
 				</td>
 				
 				<th>
+					Estilo:
+				</th>
+				<td>
+					<s:textfield name="banda.estilo" label="Nome" required="true" theme="simple"/>
+				</td>
+			</tr>
+			<tr>
+				<th>
 					Cidade:
 				</th>
 				<td>
 					<s:textfield name="banda.cidade" label="Cidade" required="true" theme="simple"/>
 				</td>
-			</tr>
-			<tr>
+				
 				<th>
 					País:
 				</th>
@@ -51,7 +58,8 @@
 				        theme="simple"
 					/>			
 				</td>
-				
+			</tr>
+			<tr>
 				<th>
 					Ano de Formação:
 				</th>
@@ -157,10 +165,9 @@
 		</s:form>
 	</s:if>
 	
-	<p align="center">
-		<s:url id="urlEditarLancamentos" action="editarLancamentos">
-			<s:param name="banda.id" value="%{banda.id}" />
-		</s:url>
-		
-		<s:a href="%{#urlEditarLancamentos}">Voltar</s:a>
-	</p>
+	<s:url id="urlEditarLancamentos" action="editarLancamentos">
+		<s:param name="banda.id" value="%{banda.id}" />
+	</s:url>
+	
+	<br><br>
+	<s:a href="%{#urlEditarLancamentos}" cssClass="botao_voltar">Voltar</s:a>

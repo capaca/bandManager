@@ -1,6 +1,7 @@
 package com.bandManager.facade;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.bandManager.domain.Arquivo;
 import com.bandManager.domain.Banda;
@@ -63,4 +64,10 @@ public interface IBandaFacade {
 	 * @throws IOException
 	 */
 	public void excluirFoto(Banda banda, String pathSistema) throws IOException;
+	
+	/**
+	 * @descricao Recupera todas as bandas cadastradas.
+	 * @return Uma lista de @{link Banda}s
+	 */
+	public List<Banda> recuperarTodas();
 }

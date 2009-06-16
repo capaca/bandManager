@@ -110,6 +110,5 @@
 		</s:form>
 	</s:if>
 	
-	<p align="center">
-		<s:a href="%{#urlEditarLancamento}">Voltar</s:a>
-	</p>
+	<br><br>
+	<s:a href="%{#urlEditarLancamento}" cssClass="botao_voltar">Voltar</s:a>

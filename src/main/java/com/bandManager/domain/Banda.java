@@ -18,6 +18,7 @@ public class Banda {
 
 	private int id;
 	private String nome;
+	private String estilo;
 	private String cidade;
 	private Pais pais;
 	private Set<Lancamento> lancamentos;
@@ -148,5 +149,12 @@ public class Banda {
 	public void setShows(Set<Show> shows) {
 		this.shows = shows;
 	}
-	
+
+	public String getEstilo() {
+		return estilo;
+	}
+
+	public void setEstilo(String estilo) {
+		this.estilo = estilo;
+	}
 }

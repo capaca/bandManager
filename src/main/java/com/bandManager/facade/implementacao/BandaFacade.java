@@ -1,6 +1,7 @@
 package com.bandManager.facade.implementacao;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.bandManager.dao.IBandaDAO;
 import com.bandManager.domain.Arquivo;
@@ -22,6 +23,10 @@ public class BandaFacade implements IBandaFacade {
 		return this.bandaDAO.recuperar(id);
 	}
 	
+	public List<Banda> recuperarTodas() {
+		return this.bandaDAO.recuperarTodas();
+	}
+
 	public void adicionarLogo(Banda banda, Arquivo logo, String pathSistema) throws ArquivoInvalidoException, IOException, ObjetoNaoEncontradoException{
 		FileUtil.validarImagem(logo);
 		

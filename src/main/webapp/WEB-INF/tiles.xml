@@ -11,6 +11,10 @@
       	<put-attribute name="rodape" value="/template/rodape.jsp" />
 	</definition>
    	
+   	<definition name="banda-listagem.page" extends="template.page">
+    	<put-attribute name="conteudo" value="/jsp/banda-listagem.jsp" />
+	</definition>	
+   	
    	<definition name="banda-editar.page" extends="template.page">
     	<put-attribute name="conteudo" value="/jsp/banda-editar.jsp" />
 	</definition>	

@@ -1,8 +1,10 @@
 package com.bandManager.dao.implementacao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +37,11 @@ public class BandaDAO implements IBandaDAO{
 		return banda;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Banda> recuperarTodas(){
+		Query query = this.entityManager.createQuery("from Banda");
+		return (List<Banda>) query.getResultList();
+	}
 	/* Getters and Setters */
 
 	@PersistenceContext

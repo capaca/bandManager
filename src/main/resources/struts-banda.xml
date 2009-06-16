@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC 
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.SlashesInActionNames" value="true"/>
+
+	<package name="banda" extends="struts-default">
+		<action name="bandas" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperarTodas">
+			<result>banda-listagem.page</result>
+		</action>
+		
+		<action name="novaBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="criar" >
+			<result>banda-editar.page</result>
+		</action>
+
+		<action name="editarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
+			<result>banda-editar.page</result>
+		</action>
+
+		<action name="editarLancamentos" class="com.bandManager.action.banda.BandaCRUDAction"
+			method="recuperar">
+			<result>banda-lancamentos.page</result>
+		</action>
+
+		<action name="salvarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="salvar">
+		<result type="redirectAction">
+			<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+		</action>
+		 
+		<action name="adicionarLogo" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="adicionarLogo">
+			<result type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+			
+			<result name="error" type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+		</action>
+		 
+		 <action name="excluirLogo" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="excluirLogo">
+			<result type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+		 </action>
+		 
+		 <action name="adicionarFoto" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="adicionarFoto">
+			<result type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+			
+			<result name="error" type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+		 </action>
+		 
+		 <action name="excluirFoto" class="com.bandManager.action.banda.BandaUploadArquivosAction" method="excluirFoto">
+			<result type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			</result>
+		 </action>
+	</package>
+</struts>

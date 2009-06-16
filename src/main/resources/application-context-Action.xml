@@ -29,5 +29,9 @@
 		<property name="musicaFacade" ref="musicaFacade" />
     </bean>
     
+    <bean id="showCRUDAction" class="com.bandManager.action.show.ShowCRUDAction">
+		<property name="paisFacade" ref="paisFacade" />
+		<property name="showFacade" ref="showFacade" />
+    </bean>
 </beans>
 
