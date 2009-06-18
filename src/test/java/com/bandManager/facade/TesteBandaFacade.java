@@ -1,20 +1,20 @@
 package com.bandManager.facade;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.bandManager.Teste;
 import com.bandManager.domain.Arquivo;
 import com.bandManager.domain.Banda;
-import com.bandManager.domain.Lancamento;
-import com.bandManager.domain.Pais;
 import com.bandManager.exception.ArquivoInvalidoException;
 import com.bandManager.exception.ObjetoNaoEncontradoException;
 

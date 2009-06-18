@@ -20,4 +20,6 @@
 	<include file="struts-musica.xml" />
 	
 	<include file="struts-show.xml" />
+	
+	<include file="struts-login.xml" />
 </struts>

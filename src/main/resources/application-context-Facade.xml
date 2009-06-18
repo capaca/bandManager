@@ -33,6 +33,11 @@
 	<bean id="showFacade" class="com.bandManager.facade.implementacao.ShowFacade">
 		<property name="showDAO" ref="showDAO" />
 	</bean>
+	
+	<!-- UsuarioFacade -->
+	<bean id="usuarioFacade" class="com.bandManager.facade.implementacao.UsuarioFacade">
+		<property name="usuarioDAO" ref="usuarioDAO" />
+	</bean>
 </beans>
 
 

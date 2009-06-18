@@ -12,6 +12,7 @@ import com.bandManager.exception.ArquivoInvalidoException;
 import com.bandManager.facade.IMusicaFacade;
 import com.bandManager.util.FileUtil;
 
+@SuppressWarnings("serial")
 public class MusicaUploadArquivosAction extends Action {
 
 	private static final String DIR_MUSICA_ARQUIVO = "audio/";

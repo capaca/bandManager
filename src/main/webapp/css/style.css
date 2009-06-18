@@ -184,11 +184,27 @@ hr { display: none; }
 	border-bottom: 4px solid #910000;
 }
 
+#user {
+	float: right;
+	z-index: 5;
+	margin-top:10px;
+	font-size: 12px;
+}
+
+#user a {
+	color: white;
+	text-decoration: underline;
+}
+
+#user a:hover {
+	color: white;
+	text-decoration: none;
+}
+
 /* Menu */
 
 #menu {
 	float: left;
-	width: 680px;
 	height: 40px;
 }
 

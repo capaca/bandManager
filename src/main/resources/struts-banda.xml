@@ -5,8 +5,6 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<constant name="struts.enable.SlashesInActionNames" value="true"/>
-
 	<package name="banda" extends="struts-default">
 		<action name="bandas" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperarTodas">
 			<result>banda-listagem.page</result>
@@ -26,8 +24,8 @@
 		</action>
 
 		<action name="salvarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="salvar">
-		<result type="redirectAction">
-			<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
+			<result type="redirectAction">
+				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
 			</result>
 		</action>
 		 

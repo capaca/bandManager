@@ -13,4 +13,5 @@
 	<import resource="application-context-DAO.xml" />
 	<import resource="application-context-Facade.xml" />
 	<import resource="application-context-Action.xml" />
+	<import resource="application-context-Security.xml"/>
 </beans>

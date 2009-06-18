@@ -14,6 +14,7 @@
 	<bean id="bandaDAO" class="com.bandManager.dao.implementacao.BandaDAO" />
 	<bean id="paisDAO" class="com.bandManager.dao.implementacao.PaisDAO" />
 	<bean id="showDAO" class="com.bandManager.dao.implementacao.ShowDAO" />
+	<bean id="usuarioDAO" class="com.bandManager.dao.implementacao.UsuarioDAO" />
 	
 	<!-- Tratamento das exceções do JPA -->	
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"></bean>

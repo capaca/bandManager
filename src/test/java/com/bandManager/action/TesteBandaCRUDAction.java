@@ -36,7 +36,7 @@ public class TesteBandaCRUDAction extends Teste {
 	public void recuperar(){
 		
 		Pais pais = utilCriarPais("Brasil");
-		Banda banda = utilCriarBanda();
+		Banda banda = utilCriarBanda(pais);
 		
 		//Seta a banda, salva e verifica o retorno
 		super.getBandaCRUDAction().setBanda(banda);

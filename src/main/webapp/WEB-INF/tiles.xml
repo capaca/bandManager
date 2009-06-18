@@ -31,7 +31,8 @@
     	<put-attribute name="conteudo" value="/jsp/musica-editar.jsp" />
 	</definition>
 	
-	<definition name="show-editar.page" extends="template.page">
-    	<put-attribute name="conteudo" value="/jsp/show-editar.jsp" />
-	</definition>	
+	<definition name="usuario-editar.page" extends="template.page">
+    	<put-attribute name="conteudo" value="/jsp/usuario-editar.jsp" />
+	</definition>
+	
 </tiles-definitions>

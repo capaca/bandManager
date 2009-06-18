@@ -5,12 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.context.SecurityContext;
+import org.springframework.security.context.SecurityContextHolder;
+
+import com.bandManager.domain.Usuario;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class Action extends ActionSupport{
+@SuppressWarnings("serial")
+public class Action extends ActionSupport {
 
 	protected Map<String, String> erros;
 	protected List<String> mensagens;
+	private Usuario usuarioLogado;
 	
 	protected void adicionarErro(String campo, String erro){
 		if(erros == null)
@@ -38,6 +44,15 @@ public class Action extends ActionSupport{
 				this.addActionMessage(mensagem);
 			}
 		}
+	}
+	
+	public Usuario getUsuarioLogado(){
+		if(usuarioLogado==null){
+			SecurityContext sc = SecurityContextHolder.getContext();
+			this.usuarioLogado = (Usuario) sc.getAuthentication().getPrincipal();
+		}
+		
+		return this.usuarioLogado;	
 	}
 
 	public Map<String, String> getErros() {

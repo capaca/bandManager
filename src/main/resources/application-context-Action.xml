@@ -33,5 +33,10 @@
 		<property name="paisFacade" ref="paisFacade" />
 		<property name="showFacade" ref="showFacade" />
     </bean>
+    
+    <bean id="usuarioCRUDAction" class="com.bandManager.action.usuario.UsuarioCRUDAction">
+		<property name="paisFacade" ref="paisFacade" />
+		<property name="usuarioFacade" ref="usuarioFacade" />
+    </bean>
 </beans>
 

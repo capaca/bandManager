@@ -9,6 +9,7 @@ import com.bandManager.exception.ObjetoNaoEncontradoException;
 import com.bandManager.facade.IBandaFacade;
 import com.bandManager.facade.IPaisFacade;
 
+@SuppressWarnings("serial")
 public class BandaCRUDAction extends Action {
 
 	/* Atributos */

@@ -6,6 +6,7 @@ import com.bandManager.domain.Lancamento;
 import com.bandManager.domain.Musica;
 import com.bandManager.facade.IMusicaFacade;
 
+@SuppressWarnings("serial")
 public class MusicaCRUDAction extends Action {
 
 	private IMusicaFacade musicaFacade;

@@ -15,11 +15,13 @@ import com.bandManager.dao.ILancamentoDAO;
 import com.bandManager.dao.IMusicaDAO;
 import com.bandManager.dao.IPaisDAO;
 import com.bandManager.dao.IShowDAO;
+import com.bandManager.dao.IUsuarioDAO;
 import com.bandManager.facade.IBandaFacade;
 import com.bandManager.facade.ILancamentoFacade;
 import com.bandManager.facade.IMusicaFacade;
 import com.bandManager.facade.IPaisFacade;
 import com.bandManager.facade.IShowFacade;
+import com.bandManager.facade.IUsuarioFacade;
 
 public class Dependencias extends Spring {
 
@@ -29,6 +31,7 @@ public class Dependencias extends Spring {
 	private static IBandaDAO bandaDAO;
 	private static IPaisDAO paisDAO;
 	private static IShowDAO showDAO;
+	private static IUsuarioDAO usuarioDAO;
 	
 //==/* Facades */==========================================================================================================================
 	private static IBandaFacade bandaFacade;
@@ -36,6 +39,7 @@ public class Dependencias extends Spring {
 	private static ILancamentoFacade lancamentoFacade;
 	private static IMusicaFacade musicaFacade;
 	private static IShowFacade showFacade;
+	private static IUsuarioFacade usuarioFacade;
 	
 //==/* Actions */==========================================================================================================================
 	private static BandaCRUDAction bandaCRUDAction;
@@ -99,6 +103,13 @@ public class Dependencias extends Spring {
 		return showDAO;
 	}
 	
+	public static IUsuarioDAO getUsuarioDAO(){
+		if(usuarioDAO == null)
+			usuarioDAO = (IUsuarioDAO) Spring.getContext().getBean("usuarioDAO");
+		
+		return usuarioDAO;
+	}
+	
 //==/* Getters Facade */===================================================================================================================
 	public static IMusicaFacade getMusicaFacade(){
 		if(musicaFacade==null)
@@ -133,6 +144,13 @@ public class Dependencias extends Spring {
 			showFacade = (IShowFacade) Spring.getContext().getBean("showFacade");
 			
 		return showFacade;
+	}
+	
+	public static IUsuarioFacade getUsuarioFacade() {
+		if(usuarioFacade==null)
+			usuarioFacade = (IUsuarioFacade) Spring.getContext().getBean("usuarioFacade");
+			
+		return usuarioFacade;
 	}
 	
 	//==/* Getters Action */===================================================================================================================

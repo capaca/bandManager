@@ -11,6 +11,7 @@ import com.bandManager.domain.Lancamento;
 import com.bandManager.domain.Musica;
 import com.bandManager.domain.Pais;
 import com.bandManager.domain.Show;
+import com.bandManager.domain.Usuario;
 
 public class TesteUtil extends Dependencias{
 
@@ -197,6 +198,15 @@ public class TesteUtil extends Dependencias{
 	
 //==/* Arquivo */================================================================================================================
 
+	protected Usuario utilCriarUsuario(){
+		return utilCriarUsuario("capaca", "123456");
+	}
+	
+	protected Usuario utilCriarUsuario(String username, String password){
+		Usuario usuario = new Usuario(username,password);
+		return super.getUsuarioDAO().salvar(usuario);
+	}
+	
 	protected void utilVerificarArquivo(Arquivo arquivoEsperado, Arquivo arquivoAtual){
 		assertNotNull(arquivoAtual);
 		assertEquals(arquivoEsperado.getNome(), arquivoAtual.getNome());
@@ -204,7 +214,17 @@ public class TesteUtil extends Dependencias{
 		assertEquals(arquivoEsperado.getContentType(), arquivoAtual.getContentType());
 		assertEquals(arquivoEsperado.getDiretorioRelativo(), arquivoAtual.getDiretorioRelativo());
 	}
+
+//==/* Usuario */================================================================================================================
+
+	
+	
+	protected void utilVerificarAtributos(Usuario usuarioEsperado, Usuario usuario) {
+		assertNotNull(usuarioEsperado);
+		assertNotNull(usuario);
+		
+		assertEquals(usuarioEsperado.getUsername(), usuario.getUsername());
+		assertEquals(usuarioEsperado.getPassword(), usuario.getPassword());
+	}
 }
-
-
 

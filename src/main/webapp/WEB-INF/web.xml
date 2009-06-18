@@ -14,7 +14,25 @@
 		</param-value>
 	</context-param>
 	
-	<!-- Filters -->	
+	<!-- Filters -->
+	
+	<!-- Spring Security -->
+    <filter>
+    	<filter-name>springSecurityFilterChain</filter-name>
+    	<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+		<!-- 
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		 -->
+	</filter-mapping>
+	
+	<!-- Struts2 -->	
 	<filter>
         <filter-name>action2-cleanup</filter-name>
         <filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>

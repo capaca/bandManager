@@ -16,7 +16,7 @@ public class Teste extends TesteUtil{
 		this.entityManager.getTransaction().begin();
 		
 		Query query = this.entityManager.createNativeQuery("" +
-				"truncate table banda, lancamento, musica, show, arquivo, pais cascade");
+				"truncate table banda, lancamento, musica, show, arquivo, pais, perfil, usuario cascade");
 		
 		query.executeUpdate();
 		this.entityManager.getTransaction().commit();
