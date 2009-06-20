@@ -14,25 +14,31 @@
    	<definition name="banda-listagem.page" extends="template.page">
     	<put-attribute name="conteudo" value="/jsp/banda-listagem.jsp" />
 	</definition>	
-   	
+   	 
    	<definition name="banda-editar.page" extends="template.page">
-    	<put-attribute name="conteudo" value="/jsp/banda-editar.jsp" />
+    	<put-attribute name="conteudo" value="/jsp/banda/banda-editar.jsp" />
 	</definition>	
 	
+	<!-- 
    	<definition name="banda-lancamentos.page" extends="template.page">
     	<put-attribute name="conteudo" value="/jsp/banda-lancamentos.jsp" />
 	</definition>
-	
+	 -->
+	 
 	<definition name="lancamento-editar.page" extends="template.page">
-    	<put-attribute name="conteudo" value="/jsp/lancamento-editar.jsp" />
+    	<put-attribute name="conteudo" value="/jsp/lancamento/lancamento-editar.jsp" />
 	</definition>
 	
 	<definition name="musica-editar.page" extends="template.page">
-    	<put-attribute name="conteudo" value="/jsp/musica-editar.jsp" />
+    	<put-attribute name="conteudo" value="/jsp/musica/musica-editar.jsp" />
+	</definition>
+	
+	<definition name="show-editar.page" extends="template.page">
+    	<put-attribute name="conteudo" value="/jsp/show/show-editar.jsp" />
 	</definition>
 	
 	<definition name="usuario-editar.page" extends="template.page">
-    	<put-attribute name="conteudo" value="/jsp/usuario-editar.jsp" />
+    	<put-attribute name="conteudo" value="/jsp/usuario/usuario-editar.jsp" />
 	</definition>
 	
 </tiles-definitions>

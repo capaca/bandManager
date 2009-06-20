@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags" %>
 
-	<s:url id="urlEditarLancamentos" action="editarLancamentos">
+	<s:url id="urlEditarBanda" action="editarBanda">
 		<s:param name="banda.id" value="%{banda.id}" />
 	</s:url>
 	
@@ -12,7 +12,7 @@
 	</s:url>
 	
 	<p class="migalha">
-		<s:a href="%{#urlEditarLancamentos}">Banda</s:a> :: 
+		<s:a href="%{#urlEditarBanda}">Banda</s:a> :: 
 		<s:a href="%{#urlEditarLancamento}">Lancamento</s:a> :: Música 
 	</p>
 	

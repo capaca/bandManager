@@ -22,4 +22,6 @@
 	<include file="struts-show.xml" />
 	
 	<include file="struts-login.xml" />
+	
+	<include file="struts-usuario.xml" />
 </struts>

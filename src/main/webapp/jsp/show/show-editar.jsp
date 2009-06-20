@@ -17,7 +17,7 @@
 </head>
 
 	<h1>Editar 
-		<s:if test="%{banda!=null && banda.nome != ''}">
+		<s:if test="%{banda!=null && banda.nome != null && banda.nome != ''}">
 			<s:property value="show.nome"/>
 		</s:if>
 		<s:else>
@@ -101,10 +101,10 @@
 		</table>
 	</s:form>
 	
-	<s:url id="urlEditarLancamentos" action="editarLancamentos">
+	<s:url id="urlEditarBanda" action="editarBanda">
 		<s:param name="banda.id" value="%{banda.id}" />
 	</s:url>
 	
 	<br><br>
 	
-	<s:a href="%{#urlEditarLancamentos}" cssClass="botao_voltar">Voltar</s:a>
+	<s:a href="%{#urlEditarBanda}" cssClass="botao_voltar">Voltar</s:a>

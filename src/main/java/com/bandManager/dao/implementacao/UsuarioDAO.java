@@ -1,6 +1,7 @@
 package com.bandManager.dao.implementacao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -34,7 +35,12 @@ public class UsuarioDAO implements IUsuarioDAO {
 		Query query = entityManager.createQuery(sql);
 		query.setParameter("username", username);
 		
-		return (Usuario) query.getSingleResult();
+		try{
+			return (Usuario) query.getSingleResult();
+		}
+		catch(NoResultException exception){
+			throw exception;
+		}
 	}
 	
 	@PersistenceContext

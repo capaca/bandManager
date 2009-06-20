@@ -1,5 +1,7 @@
 package com.bandManager.facade.implementacao;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.userdetails.UserDetails;
 import org.springframework.security.userdetails.UsernameNotFoundException;
@@ -25,13 +27,17 @@ public class UsuarioFacade implements IUsuarioFacade {
 	}
 	
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
-		Usuario usuario = this.recuperar(username);
-		
-		if(usuario == null){
+		try{
+			Usuario usuario = this.recuperar(username);
+			if(usuario == null){
+				throw new UsernameNotFoundException("Usuário ou senha inválidos.");
+			}
+			
+			return usuario;
+		}
+		catch(NoResultException exception){
 			throw new UsernameNotFoundException("Usuário ou senha inválidos.");
 		}
-		
-		return usuario;
 	}
 
 	public IUsuarioDAO getUsuarioDAO() {

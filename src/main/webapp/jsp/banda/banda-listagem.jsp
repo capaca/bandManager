@@ -7,7 +7,8 @@
 	<s:actionerror/>
 	<s:actionmessage/>
 	
-	<table  class="listagem" border="0" width="80%" align="center">
+	<s:if test="bandas.size()>0">
+	<table  class="listagem" border="0" align="center">
 		<tr>
 			<th width="25%">
 				Nome
@@ -54,3 +55,19 @@
 			</tr>
 		</s:iterator>
 	</table>
+	</s:if>
+	<s:else>
+		<center>
+			Nenhuma banda adicionada.
+		</center>
+	</s:else>
+	
+	<br>
+	<center>
+	 	<s:url id="urlNovaBanda" action="novaBanda"/>
+		<s:a href="%{#urlNovaBanda}" cssClass="botao_adicionar">Nova Banda</s:a>
+	</center>
+	
+	
+	
+	

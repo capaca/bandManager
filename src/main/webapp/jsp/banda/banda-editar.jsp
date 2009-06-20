@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 
 <%@taglib prefix="s" uri="/struts-tags"%>
-<%@taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 
 	<h1>Editar 
 		<s:if test="%{banda!=null && banda.nome != ''}">
@@ -163,11 +162,16 @@
 				</tr>
 			</table>
 		</s:form>
+		
+		<!-- INCLUI A LISTAGEM DOS SHOWS -->
+		<jsp:include page="../show/show-listagem.jsp" />
+		
+		<!-- INCLUI A LISTAGEM DOS LANCAMENTOS -->
+		<jsp:include page="../lancamento/lancamento-listagem.jsp" />
 	</s:if>
 	
-	<s:url id="urlEditarLancamentos" action="editarLancamentos">
-		<s:param name="banda.id" value="%{banda.id}" />
-	</s:url>
 	
-	<br><br>
-	<s:a href="%{#urlEditarLancamentos}" cssClass="botao_voltar">Voltar</s:a>
+	<s:url id="urlBandas" action="bandas" />
+	
+	<br>
+	<s:a href="%{#urlBandas}" cssClass="botao_voltar">Voltar</s:a>

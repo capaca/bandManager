@@ -21,7 +21,7 @@
 		</action>
 			
 		<action name="excluirLancamento" class="com.bandManager.action.lancamento.LancamentoCRUDAction" method="excluir">
-			<result type="redirect">editarLancamentos?banda.id=%{banda.id}</result>
+			<result type="redirect">editarBanda?banda.id=%{banda.id}</result>
 		</action>
 			
 		<action name="adicionarCapa" class="com.bandManager.action.lancamento.LancamentoUploadArquivosAction" method="adicionarCapa">

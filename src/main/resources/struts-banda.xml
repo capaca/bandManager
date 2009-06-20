@@ -18,11 +18,6 @@
 			<result>banda-editar.page</result>
 		</action>
 
-		<action name="editarLancamentos" class="com.bandManager.action.banda.BandaCRUDAction"
-			method="recuperar">
-			<result>banda-lancamentos.page</result>
-		</action>
-
 		<action name="salvarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="salvar">
 			<result type="redirectAction">
 				<param name="actionName">editarBanda?banda.id=%{banda.id}</param>
