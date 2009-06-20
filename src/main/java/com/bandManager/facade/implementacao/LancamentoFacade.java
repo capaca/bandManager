@@ -1,12 +1,10 @@
 package com.bandManager.facade.implementacao;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 import com.bandManager.dao.ILancamentoDAO;
 import com.bandManager.domain.Arquivo;
-import com.bandManager.domain.Banda;
 import com.bandManager.domain.Lancamento;
 import com.bandManager.domain.Musica;
 import com.bandManager.exception.ArquivoInvalidoException;

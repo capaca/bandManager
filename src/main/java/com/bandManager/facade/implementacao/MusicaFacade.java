@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.bandManager.dao.IMusicaDAO;
 import com.bandManager.domain.Arquivo;
-import com.bandManager.domain.Lancamento;
 import com.bandManager.domain.Musica;
 import com.bandManager.exception.ArquivoInvalidoException;
 import com.bandManager.facade.IMusicaFacade;

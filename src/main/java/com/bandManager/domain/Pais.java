@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@SuppressWarnings("serial")
 public class Pais implements Serializable {
 
 	private int id;

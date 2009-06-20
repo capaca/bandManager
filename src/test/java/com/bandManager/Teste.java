@@ -4,7 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.junit.Before;
-import org.springframework.transaction.annotation.Transactional;
 
 public class Teste extends TesteUtil{
 

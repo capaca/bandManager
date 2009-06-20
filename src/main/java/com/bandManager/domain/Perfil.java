@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
+@SuppressWarnings("serial")
 public class Perfil implements Serializable {
 
 	private int id;

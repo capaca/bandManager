@@ -26,9 +26,10 @@ public class PaisDAO implements IPaisDAO {
 		return pais;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Pais> recuperarTodos(){
 		Query query = entityManager.createQuery("from Pais order by nome");
-		return query.getResultList();
+		return (List<Pais>) query.getResultList();
 	}
 
 	@PersistenceContext

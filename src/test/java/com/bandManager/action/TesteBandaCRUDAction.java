@@ -5,12 +5,10 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import com.bandManager.Teste;
 import com.bandManager.domain.Banda;
-import com.bandManager.domain.Lancamento;
 import com.bandManager.domain.Pais;
 import com.bandManager.exception.ObjetoNaoEncontradoException;
 

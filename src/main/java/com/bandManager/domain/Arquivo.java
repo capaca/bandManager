@@ -14,7 +14,6 @@ public class Arquivo {
 	private String contentType;
 	private String nome;
 	private String diretorioRelativo;
-	private String caminhoArquivo;
 	
 	public Arquivo(){
 		
