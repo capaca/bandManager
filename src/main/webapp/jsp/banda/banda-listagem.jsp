@@ -2,13 +2,26 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
 
+	<SCRIPT type="text/javascript">
+		$(document).ready(function() { 
+		    $("#tabelaBandas").tablesorter({
+		    	headers: {  
+		            5: { 
+		                sorter: false 
+		            } 
+		        } 
+			}); 
+		});
+	</SCRIPT>
+
 	<h1>Bandas</h1>
 	
 	<s:actionerror/>
 	<s:actionmessage/>
 	
 	<s:if test="bandas.size()>0">
-	<table  class="listagem" border="0" align="center">
+	<table id="tabelaBandas" class="listagem" border="0" align="center">
+		<thead>
 		<tr>
 			<th width="25%">
 				Nome
@@ -23,12 +36,14 @@
 				Pais
 			</th>
 			<th width="15%">
-				Ano de Formação
+				Ano
 			</th>
 			<th width="15%">
 				Editar
 			</th>
 		</tr>
+		</thead>
+		<tbody>
 		<s:iterator value="bandas">
 			<tr>
 				<td>
@@ -54,6 +69,7 @@
 				</td>
 			</tr>
 		</s:iterator>
+		</tbody>
 	</table>
 	</s:if>
 	<s:else>

@@ -12,18 +12,12 @@
 	</definition>
    	
    	<definition name="banda-listagem.page" extends="template.page">
-    	<put-attribute name="conteudo" value="/jsp/banda-listagem.jsp" />
+    	<put-attribute name="conteudo" value="/jsp/banda/banda-listagem.jsp" />
 	</definition>	
    	 
    	<definition name="banda-editar.page" extends="template.page">
     	<put-attribute name="conteudo" value="/jsp/banda/banda-editar.jsp" />
 	</definition>	
-	
-	<!-- 
-   	<definition name="banda-lancamentos.page" extends="template.page">
-    	<put-attribute name="conteudo" value="/jsp/banda-lancamentos.jsp" />
-	</definition>
-	 -->
 	 
 	<definition name="lancamento-editar.page" extends="template.page">
     	<put-attribute name="conteudo" value="/jsp/lancamento/lancamento-editar.jsp" />
