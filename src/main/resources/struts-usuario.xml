@@ -15,5 +15,15 @@
 				<param name="actionName">editarPerfil</param>
 			</result>
 		</action>
+		
+		<action name="trocarSenha" class="com.bandManager.action.usuario.UsuarioSenhaAction" method="trocarSenha">
+			<result type="redirectAction">
+				<param name="actionName">editarPerfil</param>
+			</result>
+			
+			<result name="error" type="chain">
+				<param name="actionName">editarPerfil</param>
+			</result>
+		</action>
 	</package>
 </struts>

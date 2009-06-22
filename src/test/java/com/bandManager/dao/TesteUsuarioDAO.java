@@ -1,6 +1,7 @@
 package com.bandManager.dao;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 import com.bandManager.Teste;
 import com.bandManager.domain.Usuario;
@@ -28,6 +29,14 @@ public class TesteUsuarioDAO extends Teste {
 		Usuario usuario = utilCriarUsuario();
 		Usuario usuarioRecuperado = super.getUsuarioDAO().recuperar(usuario.getUsername());
 		utilVerificarAtributos(usuario, usuarioRecuperado);
+	}
+	
+	@Test
+	public void trocarSenha(){
+		Usuario usuario = utilCriarUsuario();
+		super.getUsuarioDAO().trocarSenha(usuario.getId(), "654321");
+		Usuario usuarioRecuperado = super.getUsuarioDAO().recuperar(usuario.getId());
+		assertEquals("654321", usuarioRecuperado.getPassword());
 	}
 
 }

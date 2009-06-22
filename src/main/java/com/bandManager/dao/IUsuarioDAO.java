@@ -26,4 +26,7 @@ public interface IUsuarioDAO {
 	 * @return {@link Usuario} recuperado
 	 */
 	public Usuario recuperar(String username);
+	
+	//FIXME Documentar
+	public void trocarSenha(int idUsuario, String novaSenha);
 }

@@ -43,9 +43,23 @@ public class UsuarioDAO implements IUsuarioDAO {
 		}
 	}
 	
+	public void trocarSenha(int idUsuario, String novaSenha) {
+		String sql = "update Usuario u set u.password = :senha where u.id = :id";
+		Query q = entityManager.createQuery(sql);
+		q.setParameter("senha", novaSenha);
+		q.setParameter("id", idUsuario);
+		q.executeUpdate();
+	}
+	
 	@PersistenceContext
 	public void setEntityManager(EntityManager entityManager){
 		this.entityManager = entityManager;
 	}
-
+	
+	
+	
+	
+	
+	
+	
 }

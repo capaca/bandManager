@@ -66,6 +66,11 @@ input, textarea {
 	text-align: center;
 }
 
+.errorMessage{
+	color: red;
+	font-size: 14px;
+}
+
 /*Estilo do table sorter*/
 
 th.header, th.headerSortUp, th.headerSortDown {

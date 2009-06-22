@@ -8,6 +8,7 @@ import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.bandManager.dao.IUsuarioDAO;
 import com.bandManager.domain.Usuario;
+import com.bandManager.exception.SenhaInvalidaException;
 import com.bandManager.facade.IUsuarioFacade;
 
 public class UsuarioFacade implements IUsuarioFacade {
@@ -37,6 +38,17 @@ public class UsuarioFacade implements IUsuarioFacade {
 		}
 		catch(NoResultException exception){
 			throw new UsernameNotFoundException("Usuário ou senha inválidos.");
+		}
+	}
+	
+	public void trocarSenha(Usuario usuario, String novaSenha) throws SenhaInvalidaException{
+		String senhaAtual = this.recuperar(usuario.getId()).getPassword();
+		
+		if(senhaAtual.equals(usuario.getPassword())){
+			this.usuarioDAO.trocarSenha(usuario.getId(), novaSenha);
+		}
+		else{
+			throw new SenhaInvalidaException();
 		}
 	}
 

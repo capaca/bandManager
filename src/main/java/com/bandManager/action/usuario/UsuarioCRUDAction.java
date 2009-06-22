@@ -20,6 +20,7 @@ public class UsuarioCRUDAction extends Action {
 	public String recuperar(){
 		this.paises = this.paisFacade.recuperarTodos();
 		this.usuario = this.usuarioFacade.recuperar(this.getUsuarioLogado().getUsername());
+		apresentarErrosEMensagens();
 		
 		return SUCCESS;
 	}

@@ -21,6 +21,7 @@
 	</h1>
 	
 	<s:actionerror/>
+	<s:fielderror/>
 	<s:actionmessage/>
 	
 	<s:url id="urlSalvarUsuario" value="salvarPerfil">
@@ -76,6 +77,42 @@
 				</td>
 				<td>
 					<s:submit value="Salvar" theme="simple"/>
+				</td>
+			</tr>
+		</table>
+	</s:form>
+	
+	<s:form action="trocarSenha">
+		<table border="0" class="form">
+			<tr>
+				<th>
+					Senha atual:
+				</th>
+				<td>
+					<s:password name="senhaAtual" required="true" theme="simple"/>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Nova senha:
+				</th>
+				<td>
+					<s:password name="novaSenha" required="true" theme="simple"/>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					Confirmação da nova senha:
+				</th>
+				<td>
+					<s:password name="confirmacaoNovaSenha" required="true" theme="simple"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				</td>
+				<td>
+					<s:submit value="Trocar" />
 				</td>
 			</tr>
 		</table>
