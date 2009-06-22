@@ -1,10 +1,46 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 
-<h2>Lançamentos</h2>
+<SCRIPT type="text/javascript">
+	$(document).ready(function() { 
+	    $("#tabelaLancamentos").tablesorter({ 
+	        headers: { 
+		    	2: { 
+		            sorter: false 
+		        }, 
+				3: { 
+	                sorter: false 
+	            }, 
+	            4: { 
+	                sorter: false 
+	            } 
+	        } 
+	    }); 
+	});
 
-<div class="sub_conteudo">
+	isLancamentoAberto = true;
+
+	$(function() {
+		$("#tituloLancamentos").click(function() {
+			if(isLancamentoAberto){
+				$("#lancamentos").hide('blind');
+				isLancamentoAberto = false;
+			}
+			else{
+				$("#lancamentos").show('blind');
+				isLancamentoAberto = true;
+			}
+		});
+	});
+</SCRIPT>
+
+<h2 id="tituloLancamentos">
+	<span class="tituloClick">Lancamentos</span>
+</h2>
+
+<div id="lancamentos" class="sub_conteudo">
 	<s:if test="banda.lancamentos.size() > 0">
-	<table  class="listagem" border="0" width="80%" align="center">
+	<table id="tabelaLancamentos" class="listagem" border="0" width="80%" align="center">
+		<thead>
 		<tr>
 			<th>
 				Nome
@@ -22,6 +58,8 @@
 				Excluir
 			</th>
 		</tr>
+		</thead>
+		<tbody>
 		<s:iterator value="banda.lancamentos">
 			<tr>
 				<td>
@@ -55,6 +93,7 @@
 				</td>
 			</tr>
 		</s:iterator>
+		</tbody>
 	</table>
 	</s:if>
 	<s:else>

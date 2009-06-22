@@ -1,10 +1,44 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 
-<h2>Shows</h2>
+<SCRIPT type="text/javascript">
+	$(document).ready(function() { 
+	    $("#tabelaShows").tablesorter({ 
+	    	dateFormat: "uk",
+	        headers: { 
+    			4: { 
+	                sorter: false 
+	            }, 
+	            5: { 
+	                sorter: false 
+	            } 
+	        } 
+	    }); 
+	});
+
+	isShowAberto = true;
+
+	$(function() {
+		$("#tituloShows").click(function() {
+			if(isShowAberto){
+				$("#shows").hide('blind');
+				isShowAberto = false;
+			}
+			else{
+				$("#shows").show('blind');
+				isShowAberto = true;
+			}
+		});
+	});
+</SCRIPT>
+
+<h2 id="tituloShows">
+	<span class="tituloClick">Shows</span>
+</h2>
 	
 <div id="shows" class="sub_conteudo">
 	<s:if test="banda.shows.size() > 0">
-	<table  class="listagem" border="0" width="80%" align="center">
+	<table id="tabelaShows" class="listagem" border="0" width="80%" align="center">
+		<thead>
 		<tr>
 			<th width="15%">
 				Data
@@ -25,6 +59,8 @@
 				Excluir
 			</th>
 		</tr>
+		</thead>
+		<tbody>
 		<s:iterator value="banda.shows">
 			<tr>
 				<td>
@@ -61,6 +97,7 @@
 				</td>
 			</tr>
 		</s:iterator>
+		</tbody>
 	</table>
 	</s:if>
 	<s:else>

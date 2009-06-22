@@ -47,6 +47,7 @@ input, textarea {
 	font-style: italic;
 }
 
+
 .form td{
 	text-align: justify;
 }
@@ -59,6 +60,37 @@ input, textarea {
 
 .listagem td{
 	text-align: center;
+}
+
+/*Estilo do table sorter*/
+
+th.header, th.headerSortUp, th.headerSortDown {
+	background-image: url(images/bg.gif);
+	background-position:right center;
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+th.header, th.headerSortUp, th.headerSortDown {
+	background-image: url(images/bg.gif);
+}
+
+th.headerSortUp { 
+	background-color: #C42606;
+	background-image: url(images/asc.gif);
+} 
+
+th.headerSortDown { 
+	background-color: #C42606;
+	background-image: url(images/desc.gif);
+}
+
+.tituloClick, .tituloClick:hover {
+	cursor: pointer;
+}
+
+.tituloClick:hover {
+	text-decoration: underline;
 }
 
 .migalha {

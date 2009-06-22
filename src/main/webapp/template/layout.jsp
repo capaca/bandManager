@@ -17,12 +17,13 @@
 
 <link href="css/style.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" media="screen" />
-
 <tiles:importAttribute name="titulo" scope="request"/>
 <title><tiles:getAsString name="titulo"/></title>
 
-<SCRIPT type="text/javascript" src="js/jquery-1.3.2.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="js/jquery-1.3.2.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="js/jquery.tablesorter.min.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></SCRIPT>
+
 </head>
 <body>
 	<div id="principal">

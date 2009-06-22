@@ -1,6 +1,7 @@
 <%@taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="html" uri="http://struts.apache.org/tags-html" %>
 
+
 	<s:url id="urlEditarBanda" action="editarBanda">
 		<s:param name="banda.id" value="%{banda.id}" />
 	</s:url>
@@ -101,10 +102,10 @@
 				</tr>
 			</table>
 		</s:form>
+		
+		<!-- INCLUI A LISTAGEM DE MUSICAS -->
+		<jsp:include page="../musica/musica-listagem.jsp" />
 	</s:if>
-	
-	<!-- INCLUI A LISTAGEM DE MUSICAS -->
-	<jsp:include page="../musica/musica-listagem.jsp" />
 	
 	<br><br>
 		
