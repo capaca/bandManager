@@ -38,5 +38,8 @@
 		<property name="paisFacade" ref="paisFacade" />
 		<property name="usuarioFacade" ref="usuarioFacade" />
     </bean>
+    
+    <bean id="loginAction" class="com.bandManager.action.login.LoginAction">
+    </bean>
 </beans>
 

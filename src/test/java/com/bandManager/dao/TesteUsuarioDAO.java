@@ -1,5 +1,7 @@
 package com.bandManager.dao;
 
+import javax.persistence.NoResultException;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -29,6 +31,18 @@ public class TesteUsuarioDAO extends Teste {
 		Usuario usuario = utilCriarUsuario();
 		Usuario usuarioRecuperado = super.getUsuarioDAO().recuperar(usuario.getUsername());
 		utilVerificarAtributos(usuario, usuarioRecuperado);
+	}
+	
+	@Test
+	public void erroRecuperarUsuarioNaoEncontrado(){
+		Usuario usuario = new Usuario("usuario","123456");
+		try{
+			super.getUsuarioDAO().recuperar(usuario.getUsername());
+			fail("Recuperou mas não deveria.");
+		}
+		catch(NoResultException e){
+			//ok
+		}
 	}
 	
 	@Test

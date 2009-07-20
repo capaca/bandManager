@@ -32,6 +32,19 @@ public class TesteShowDAO extends Teste {
 	}
 	
 	@Test
+	public void erroRecuperarObjetoNaoEncontrado() throws ObjetoNaoEncontradoException {
+		this.show = new Show();
+		
+		try{
+			super.getShowDAO().recuperar(this.show.getId());
+			fail("Recuperou mas não deveria");
+		}
+		catch(ObjetoNaoEncontradoException e){
+			//ok
+		}
+	}
+	
+	@Test
 	public void excluir(){
 		super.getShowDAO().salvar(this.show);
 		super.getShowDAO().excluir(this.show.getId());

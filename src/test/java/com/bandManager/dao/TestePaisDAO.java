@@ -23,6 +23,12 @@ public class TestePaisDAO extends Teste {
 		//Verifica se o pais foi salvo corretamente
 		assertNotNull(paisSalvo);
 		assertEquals(PAIS_NOME, pais.getNome());
+		
+		//Verifica o merge
+		pais.setNome("OutroNome");
+		paisSalvo = super.getPaisDAO().salvar(pais);
+	
+		assertEquals(paisSalvo.getNome(), pais.getNome());
 	}
 	
 	@Test

@@ -1,6 +1,7 @@
 package com.bandManager.action;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,12 @@ import com.bandManager.domain.Pais;
 import com.bandManager.exception.ObjetoNaoEncontradoException;
 
 public class TesteBandaCRUDAction extends Teste {
+	
+	@Test
+	public void criar(){
+		assertEquals(Action.SUCCESS, super.getBandaCRUDAction().criar());
+		assertNotNull(super.getBandaCRUDAction().getPaises());
+	}
 	
 	@Test
 	public void salvar() throws ObjetoNaoEncontradoException{
@@ -49,6 +56,27 @@ public class TesteBandaCRUDAction extends Teste {
 		//Verifica o pais
 		assertEquals(1, super.getBandaCRUDAction().getPaises().size());
 		assertEquals(pais.getNome(), super.getBandaCRUDAction().getPaises().get(0).getNome());
+	}
+	
+	@Test
+	public void erroRecuperarObjetoNaoEncontrado(){
+		
+		Banda banda = null;
+		
+		//Seta a banda nula
+		super.getBandaCRUDAction().setBanda(banda);
+		
+		//Tenta recuperar a banda
+		assertEquals(Action.ERROR, super.getBandaCRUDAction().recuperar());
+		
+		//Cria uma banda e não salva
+		banda = new Banda(BANDA_NOME, BANDA_CIDADE,new Pais("Brasil"), BANDA_ANO_FORMACAO, BANDA_RELEASE);
+		
+		//Seta a banda
+		super.getBandaCRUDAction().setBanda(banda);
+		
+		//Tenta recuperar a banda
+		assertEquals(Action.ERROR, super.getBandaCRUDAction().recuperar());
 	}
 	
 	@Test
