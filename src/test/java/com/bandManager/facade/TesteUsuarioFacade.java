@@ -4,8 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
+import org.springframework.security.userdetails.UserDetails;
+import org.springframework.security.userdetails.UsernameNotFoundException;
 
 import com.bandManager.Teste;
+import com.bandManager.dao.implementacao.UsuarioDAO;
 import com.bandManager.domain.Usuario;
 import com.bandManager.exception.SenhaInvalidaException;
 
@@ -15,21 +18,54 @@ public class TesteUsuarioFacade extends Teste {
 	public void salvar(){
 		Usuario usuario = new Usuario("capaca", "123456");
 		Usuario usuarioSalvo = super.getUsuarioFacade().salvar(usuario);
-		utilVerificarAtributos(usuario, usuarioSalvo);
+		verificarAtributos(usuario, usuarioSalvo);
 	}
 	
 	@Test
 	public void recuperar(){
 		Usuario usuario = utilCriarUsuario();
 		Usuario usuarioRecuperado = super.getUsuarioFacade().recuperar(usuario.getId());
-		utilVerificarAtributos(usuario, usuarioRecuperado);
+		verificarAtributos(usuario, usuarioRecuperado);
 	}
 	
 	@Test
 	public void recuperarPorUserName(){
 		Usuario usuario = utilCriarUsuario();
 		Usuario usuarioRecuperado = super.getUsuarioFacade().recuperar(usuario.getUsername());
-		utilVerificarAtributos(usuario, usuarioRecuperado);
+		verificarAtributos(usuario, usuarioRecuperado);
+	}
+	
+	@Test
+	public void loadByUsername(){
+		Usuario usuario = utilCriarUsuario();
+		UserDetails usuarioRecuperado = super.getUsuarioFacade().loadUserByUsername(usuario.getUsername());
+		verificarAtributos(usuario, usuarioRecuperado);
+	}
+	
+	@Test
+	public void erroloadByUsernameNotFound(){
+		Usuario usuario =  new Usuario("usuario","senha");
+
+		try{
+			super.getUsuarioFacade().loadUserByUsername(usuario.getUsername());
+			fail("Recuperou mas não deveria");
+		}
+		catch (UsernameNotFoundException e) {
+			//ok
+		}
+	}
+	
+	@Test
+	public void erroloadByUsernameNoResult(){
+		Usuario usuario =  new Usuario("usuario","senha");
+
+		try{
+			super.getUsuarioFacade().loadUserByUsername(usuario.getUsername());
+			fail("Recuperou mas não deveria");
+		}
+		catch (UsernameNotFoundException e) {
+			//ok
+		}
 	}
 	
 	@Test

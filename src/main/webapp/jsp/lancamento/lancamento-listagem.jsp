@@ -17,25 +17,19 @@
 	    }); 
 	});
 
-	isLancamentoAberto = true;
-
 	$(function() {
 		$("#tituloLancamentos").click(function() {
-			if(isLancamentoAberto){
-				$("#lancamentos").hide('blind');
-				isLancamentoAberto = false;
+			if($("#lancamentos").css("display") == "none"){
+				$("#lancamentos").slideDown();
 			}
 			else{
-				$("#lancamentos").show('blind');
-				isLancamentoAberto = true;
+				$("#lancamentos").slideUp();
 			}
 		});
 	});
 </SCRIPT>
 
-<h2 id="tituloLancamentos">
-	<span class="tituloClick">Lancamentos</span>
-</h2>
+<div id="tituloLancamentos" class="barra">Lancamentos</div>
 
 <div id="lancamentos" class="sub_conteudo">
 	<s:if test="banda.lancamentos.size() > 0">

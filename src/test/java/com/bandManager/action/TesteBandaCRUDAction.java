@@ -4,8 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bandManager.Teste;
@@ -14,6 +17,11 @@ import com.bandManager.domain.Pais;
 import com.bandManager.exception.ObjetoNaoEncontradoException;
 
 public class TesteBandaCRUDAction extends Teste {
+	
+	@Before
+	public void setarSessao(){
+		super.getBandaCRUDAction().setSession(new HashMap<String, Object>());
+	}
 	
 	@Test
 	public void criar(){

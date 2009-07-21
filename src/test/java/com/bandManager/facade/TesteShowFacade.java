@@ -32,7 +32,7 @@ public class TesteShowFacade extends Teste {
 	}
 	
 	@Test
-	public void excluir(){
+	public void excluir() throws ObjetoNaoEncontradoException{
 		super.getShowFacade().salvar(this.show);
 		super.getShowFacade().excluir(this.show.getId());
 		

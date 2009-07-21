@@ -16,7 +16,7 @@
 
 	<h1>Bandas</h1>
 	
-	<s:actionerror/>
+	<s:fielderror/>
 	<s:actionmessage/>
 	
 	<s:if test="bandas.size()>0">

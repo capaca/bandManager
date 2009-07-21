@@ -163,9 +163,11 @@
 			</table>
 		</s:form>
 		
+		<br/>
 		<!-- INCLUI A LISTAGEM DOS SHOWS -->
 		<jsp:include page="../show/show-listagem.jsp" />
 		
+		<br/>
 		<!-- INCLUI A LISTAGEM DOS LANCAMENTOS -->
 		<jsp:include page="../lancamento/lancamento-listagem.jsp" />
 	</s:if>

@@ -17,15 +17,11 @@ public class ShowFacade implements IShowFacade {
 		return this.showDAO.recuperar(id);
 	}
 
-	public void excluir(int id) {
+	public void excluir(int id) throws ObjetoNaoEncontradoException{
 		this.showDAO.excluir(id);
 	}
 
 	/* Getters e Setters */
-	
-	public IShowDAO getShowDAO() {
-		return showDAO;
-	}
 
 	public void setShowDAO(IShowDAO showDAO) {
 		this.showDAO = showDAO;

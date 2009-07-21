@@ -15,7 +15,11 @@ public class TesteUsuarioDAO extends Teste {
 	public void salvar(){
 		Usuario usuario = new Usuario("capaca", "123456");
 		Usuario usuarioSalvo = super.getUsuarioDAO().salvar(usuario);
-		utilVerificarAtributos(usuario, usuarioSalvo);
+		verificarAtributos(usuario, usuarioSalvo);
+
+		usuario.setUsername("usuario");
+		usuarioSalvo = super.getUsuarioDAO().salvar(usuario);
+		verificarAtributos(usuario, usuarioSalvo);
 	}
 	
 	
@@ -23,14 +27,14 @@ public class TesteUsuarioDAO extends Teste {
 	public void recuperar(){
 		Usuario usuario = utilCriarUsuario();
 		Usuario usuarioRecuperado = super.getUsuarioDAO().recuperar(usuario.getId());
-		utilVerificarAtributos(usuario, usuarioRecuperado);
+		verificarAtributos(usuario, usuarioRecuperado);
 	}
 	
 	@Test
 	public void recuperarPorUserName(){
 		Usuario usuario = utilCriarUsuario();
 		Usuario usuarioRecuperado = super.getUsuarioDAO().recuperar(usuario.getUsername());
-		utilVerificarAtributos(usuario, usuarioRecuperado);
+		verificarAtributos(usuario, usuarioRecuperado);
 	}
 	
 	@Test

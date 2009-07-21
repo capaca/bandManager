@@ -1,5 +1,6 @@
 package com.bandManager.facade;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -65,7 +66,7 @@ public class TesteLancamentoFacade extends Teste {
 	}
 	
 	@Test
-	public void excluir(){
+	public void excluir() throws IOException{
 		//Exclui o lancamento
 		super.getLancamentoFacade().excluir(lancamento.getId());
 		
@@ -94,6 +95,20 @@ public class TesteLancamentoFacade extends Teste {
 		
 		Lancamento lancamentoRecuperado = super.getLancamentoFacade().recuperar(this.lancamento.getId());
 		assertNull(lancamentoRecuperado);
+	}
+	
+	@Test
+	public void erroExcluirCapa() throws ArquivoInvalidoException, IOException{
+		
+		this.lancamento.setCapa(new Arquivo());
+		
+		try{
+			super.getLancamentoFacade().excluirCapa(this.lancamento, "");
+			fail("Excluiu mas não deveria");
+		}
+		catch (IOException e) {
+			assertNotNull(e);
+		}
 	}
 	
 	@Test

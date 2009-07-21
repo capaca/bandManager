@@ -26,7 +26,7 @@ public interface ILancamentoFacade {
 	 * Exclui o {@link Lancamento} com ID igual ao valor passado por parâmetro.
 	 * @param id do {@link Lancamento} a ser excluído.
 	 */
-	public void excluir(int id);
+	public void excluir(int id) throws IOException;
 	
 	/**
 	 * Adiciona a capa a um {@link Lancamento}. O método exclui alguma capa que possa existir,

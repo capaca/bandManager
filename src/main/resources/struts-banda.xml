@@ -16,6 +16,9 @@
 
 		<action name="editarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="recuperar">
 			<result>banda-editar.page</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">bandas</param>
+			</result>
 		</action>
 
 		<action name="salvarBanda" class="com.bandManager.action.banda.BandaCRUDAction" method="salvar">

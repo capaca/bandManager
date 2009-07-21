@@ -1,5 +1,7 @@
 package com.bandManager.action.musica;
 
+import java.io.IOException;
+
 import com.bandManager.action.Action;
 import com.bandManager.domain.Banda;
 import com.bandManager.domain.Lancamento;
@@ -27,7 +29,11 @@ public class MusicaCRUDAction extends Action {
 	}
 	
 	public String excluir(){
-		this.musicaFacade.excluir(musica.getId());
+		try {
+			this.musicaFacade.excluir(musica.getId());
+		} catch (IOException e) {
+			return ERROR;
+		}
 		return SUCCESS;
 	}
 

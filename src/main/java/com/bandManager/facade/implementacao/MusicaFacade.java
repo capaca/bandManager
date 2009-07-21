@@ -21,16 +21,11 @@ public class MusicaFacade implements IMusicaFacade {
 		return this.musicaDAO.salvar(musica);
 	}
 
-	public void excluir(int id) {
+	public void excluir(int id) throws IOException {
 		Musica musica = this.recuperar(id);
 		
 		if(musica.getArquivoAudio()!=null){
-			try {
-				this.excluirArquivoMusica(musica, FileUtil.getCaminhoSitema());
-			} catch (IOException e) {
-				System.err.println("Não foi possível excluir o arquivo de audio da musica");
-				e.printStackTrace();
-			}
+			this.excluirArquivoMusica(musica, FileUtil.getCaminhoSitema());
 		}
 		this.musicaDAO.excluir(id);
 	}
@@ -68,10 +63,6 @@ public class MusicaFacade implements IMusicaFacade {
 	}
 	
 	/*Getters and Setters*/
-	
-	public IMusicaDAO getMusicaDAO() {
-		return musicaDAO;
-	}
 
 	public void setMusicaDAO(IMusicaDAO musicaDAO) {
 		this.musicaDAO = musicaDAO;

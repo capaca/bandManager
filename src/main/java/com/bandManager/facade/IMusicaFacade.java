@@ -27,7 +27,7 @@ public interface IMusicaFacade {
 	 * Exclui a música com o id passdo por parâmetro.
 	 * @param id 
 	 */
-	public void excluir(int id);
+	public void excluir(int id) throws IOException;
 	
 	/**
 	 * Adiciona um arquivo de audio a música. O processo de adição

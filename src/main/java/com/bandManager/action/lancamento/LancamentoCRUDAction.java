@@ -1,5 +1,7 @@
 package com.bandManager.action.lancamento;
 
+import java.io.IOException;
+
 import com.bandManager.action.Action;
 import com.bandManager.domain.Banda;
 import com.bandManager.domain.Lancamento;
@@ -25,7 +27,12 @@ public class LancamentoCRUDAction extends Action{
 	}
 	
 	public String excluir(){
-		this.lancamentoFacade.excluir(lancamento.getId());
+		try{
+			this .lancamentoFacade.excluir(lancamento.getId());
+		}
+		catch (IOException e) {
+			return ERROR;
+		}
 		return SUCCESS;
 	}
 

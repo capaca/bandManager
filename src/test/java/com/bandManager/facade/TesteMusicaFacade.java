@@ -1,5 +1,6 @@
 package com.bandManager.facade;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -62,7 +63,7 @@ public class TesteMusicaFacade extends Teste {
 	}
 	
 	@Test
-	public void excluir(){
+	public void excluir() throws IOException{
 		//Instancia a musica
 		Musica musica = new Musica(MUSICA_NOME, MUSICA_NUMERO, MUSICA_LETRA, lancamento);
 		
@@ -125,6 +126,20 @@ public class TesteMusicaFacade extends Teste {
 		assertFalse(file2.exists());
 		Musica musicaRecuperada = super.getMusicaFacade().recuperar(this.musica.getId());
 		assertNull(musicaRecuperada.getArquivoAudio());
+	}
+	
+	@Test
+	public void erroExcluirArquivoMusica(){
+		
+		this.musica = utilCriarMusica();
+		this.musica.setArquivoAudio(new Arquivo());
+		
+		try {
+			super.getMusicaFacade().excluirArquivoMusica(this.musica, "");
+			fail("Excluiu mas não deveria");
+		} catch (IOException e) {
+			assertNotNull(e);
+		}
 	}
 	
 	@Test

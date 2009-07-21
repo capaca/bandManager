@@ -22,6 +22,11 @@ public class TesteShowDAO extends Teste {
 	public void salvar(){
 		Show showSalvo = super.getShowDAO().salvar(this.show);
 		super.utilVerificarShow(this.show, showSalvo);
+		
+		//Troca o nome do show
+		this.show.setNome("NomeShow");
+		showSalvo = super.getShowDAO().salvar(this.show);
+		super.utilVerificarShow(this.show, showSalvo);
 	}
 	
 	@Test
@@ -45,16 +50,29 @@ public class TesteShowDAO extends Teste {
 	}
 	
 	@Test
-	public void excluir(){
+	public void excluir() throws ObjetoNaoEncontradoException{
 		super.getShowDAO().salvar(this.show);
 		super.getShowDAO().excluir(this.show.getId());
 		
-		//tenta recuperar
 		try{
 			super.getShowDAO().recuperar(this.show.getId());
-			fail("Encontrou mas não deveria");
+			fail("Recuperou mas não deveria");
 		}
 		catch (ObjetoNaoEncontradoException e) {
+			//ok
+		}
+
+	}
+	
+	@Test
+	public void erroExcluirObjetoNaoEncontrado(){
+		this.show = new Show();
+		
+		try{
+			super.getShowDAO().excluir(this.show.getId());
+			fail("Excluiu mas não deveria");
+		}
+		catch(ObjetoNaoEncontradoException e){
 			//ok
 		}
 	}

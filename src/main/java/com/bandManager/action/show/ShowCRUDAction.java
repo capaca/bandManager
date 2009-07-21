@@ -48,7 +48,13 @@ public class ShowCRUDAction extends Action {
 	}
 
 	public String excluir(){
-		this.showFacade.excluir(this.show.getId());
+		try{
+			this.showFacade.excluir(this.show.getId());
+		}
+		catch(ObjetoNaoEncontradoException e){
+			return ERROR;
+		}
+
 		return SUCCESS;
 	}
 	

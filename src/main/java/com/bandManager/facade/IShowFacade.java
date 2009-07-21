@@ -9,5 +9,5 @@ public interface IShowFacade {
 	
 	public Show recuperar(int id) throws ObjetoNaoEncontradoException;
 	
-	public void excluir(int id);
+	public void excluir(int id) throws ObjetoNaoEncontradoException;
 }

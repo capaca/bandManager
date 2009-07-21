@@ -88,10 +88,6 @@ public class BandaFacade implements IBandaFacade {
 	}
 	
 	/* Getters and Setters */
-	
-	public IBandaDAO getBandaDAO() {
-		return bandaDAO;
-	}
 
 	public void setBandaDAO(IBandaDAO bandaDAO) {
 		this.bandaDAO = bandaDAO;

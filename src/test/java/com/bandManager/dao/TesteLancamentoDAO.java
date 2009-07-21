@@ -1,6 +1,5 @@
 package com.bandManager.dao;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -49,7 +48,13 @@ public class TesteLancamentoDAO extends Teste {
 		//Verifica se o lancamento foi salvo corretamente
 		assertNotNull(albumSalvo);
 		assertTrue(albumSalvo.getId()>0);
-		verificarAtributos(albumSalvo);
+		verificarAtributos(lancamento, albumSalvo);
+		
+		//Muda o nome do lancamento
+		lancamento.setNome("NomeLancamento");
+		albumSalvo = super.getLancamentoDAO().salvar(lancamento);
+		verificarAtributos(lancamento, albumSalvo);
+		
 	}
 
 	@Test
@@ -66,7 +71,7 @@ public class TesteLancamentoDAO extends Teste {
 		Lancamento lancamentoRecuperado = super.getLancamentoDAO().recuperar(lancamento.getId());
 		
 		//Verifica se o lancamento foi recuperado corretamente
-		this.verificarAtributos(lancamentoRecuperado);
+		this.verificarAtributos(lancamento, lancamentoRecuperado);
 	}
 	
 	@Test
@@ -84,12 +89,5 @@ public class TesteLancamentoDAO extends Teste {
 		
 		//Tenta recuperar o lancamento excluido
 		assertNull(super.getLancamentoDAO().recuperar(lancamento.getId()));
-	}
-	
-	private void verificarAtributos(Lancamento lancamento){
-		assertEquals(LANCAMENTO_NOME, lancamento.getNome());
-		assertEquals(LANCAMENTO_ANO, lancamento.getAno());
-		assertEquals(LANCAMENTO_INFORMACOES, lancamento.getInformacoes());
-		assertEquals(BANDA_NOME, lancamento.getBanda().getNome());
 	}
 }

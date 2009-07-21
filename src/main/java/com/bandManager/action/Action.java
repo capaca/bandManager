@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.security.context.SecurityContext;
 import org.springframework.security.context.SecurityContextHolder;
 
@@ -12,38 +13,37 @@ import com.bandManager.domain.Usuario;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
-public class Action extends ActionSupport {
+public class Action extends ActionSupport implements SessionAware{
 
-	protected Map<String, String> erros;
-	protected List<String> mensagens;
 	private Usuario usuarioLogado;
+	private Map<String, Object> sessao;
 	
 	protected void adicionarErro(String campo, String erro){
-		if(erros == null)
-			erros = new HashMap<String, String>();
-		
-		erros.put(campo,erro);
+		this.getErros().put(campo,erro);
+		this.getMensagens().clear();
 	}
 	
 	protected void adicionarMensagem(String mensagem){
-		if(mensagens == null)
-			mensagens = new ArrayList<String>();
-		
-		mensagens.add(mensagem);
+		this.getMensagens().add(mensagem);
 	}
 	
 	public void apresentarErrosEMensagens(){
-		if(erros!=null){
-			for(String campoErro : erros.keySet()){
-				this.addFieldError(campoErro, erros.get(campoErro));
-			}
+		Map<String, String> erros = this.getErros();
+		List<String> mensagens = this.getMensagens();
+		
+		for(String campoErro : erros.keySet()){
+			this.addFieldError(campoErro, erros.get(campoErro));
 		}
 		
-		if(mensagens!=null){
-			for(String mensagem : mensagens){
-				this.addActionMessage(mensagem);
-			}
+		for(String mensagem : mensagens){
+			this.addActionMessage(mensagem);
 		}
+		
+		erros.clear();
+		mensagens.clear();
+		
+		this.sessao.put("erros", erros);
+		this.sessao.put("mensagens", mensagens);
 	}
 	
 	public Usuario getUsuarioLogado(){
@@ -55,19 +55,31 @@ public class Action extends ActionSupport {
 		return this.usuarioLogado;	
 	}
 
-	public Map<String, String> getErros() {
+	@SuppressWarnings("unchecked")
+	private List<String> getMensagens(){
+		
+		List<String> mensagens = (List<String>) this.sessao.get("mensagens");
+		
+		if(mensagens == null){
+			mensagens = new ArrayList<String>();
+		}
+		
+		return mensagens;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private Map<String, String> getErros(){
+		
+		Map<String, String> erros = (Map<String, String>) this.sessao.get("erros");
+		
+		if(erros == null){
+			erros = new HashMap<String, String>();
+		}
+		
 		return erros;
 	}
 
-	public void setErros(Map<String, String> erros) {
-		this.erros = erros;
-	}
-
-	public List<String> getMensagens() {
-		return mensagens;
-	}
-
-	public void setMensagens(List<String> mensagens) {
-		this.mensagens = mensagens;
+	public void setSession(Map<String, Object> session) {
+		this.sessao = session;
 	}
 }

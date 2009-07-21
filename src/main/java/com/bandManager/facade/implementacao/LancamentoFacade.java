@@ -25,27 +25,17 @@ public class LancamentoFacade implements ILancamentoFacade {
 		return this.lancamentoDAO.recuperar(id);
 	}
 	
-	public void excluir(int id){
+	public void excluir(int id) throws IOException{
 		Lancamento lancamento = this.recuperar(id);
 		Set<Musica> musicas = lancamento.getMusicas();
 		
 		if(lancamento.getCapa()!=null){
-			try {
-				this.excluirCapa(lancamento, FileUtil.getCaminhoSitema());
-			} catch (IOException e1) {
-				System.err.println("Não foi possível remover a capa do lancamento");
-				e1.printStackTrace();
-			}
+			this.excluirCapa(lancamento, FileUtil.getCaminhoSitema());
 		}
 		
 		if(musicas!=null){
 			for(Musica musica : musicas){
-				try {
-					this.musicaFacade.excluirArquivoMusica(musica, FileUtil.getCaminhoSitema());
-				} catch (IOException e) {
-					System.err.println("Não foi possível excluir o arquivo de áudio da musica.");
-					e.printStackTrace();
-				}
+				this.musicaFacade.excluirArquivoMusica(musica, FileUtil.getCaminhoSitema());
 			}
 		}
 		
@@ -87,16 +77,8 @@ public class LancamentoFacade implements ILancamentoFacade {
 	
 	/*Getters and Setters*/
 	
-	public ILancamentoDAO getLancamentoDAO() {
-		return lancamentoDAO;
-	}
-
 	public void setLancamentoDAO(ILancamentoDAO lancamentoDAO) {
 		this.lancamentoDAO = lancamentoDAO;
-	}
-
-	public IMusicaFacade getMusicaFacade() {
-		return musicaFacade;
 	}
 
 	public void setMusicaFacade(IMusicaFacade musicaFacade) {

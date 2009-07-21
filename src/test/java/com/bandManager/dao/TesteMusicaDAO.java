@@ -34,6 +34,15 @@ public class TesteMusicaDAO extends Teste {
 		assertNotNull(musicaSalva);
 		assertTrue(musicaSalva.getId()>0);
 		verificarAtributos(musica, musicaSalva);
+		
+		//Muda o nome
+		musica.setNome("NomeMusica");
+		
+		//Salva a musica
+		musicaSalva = super.getMusicaDAO().salvar(musica);
+		
+		//Verifica se a musica foi salva
+		verificarAtributos(musica, musicaSalva);
 	}
 	
 	@Test

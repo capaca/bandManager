@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
+import org.springframework.security.userdetails.UserDetails;
+
 import com.bandManager.domain.Arquivo;
 import com.bandManager.domain.Banda;
 import com.bandManager.domain.Lancamento;
@@ -12,6 +14,7 @@ import com.bandManager.domain.Musica;
 import com.bandManager.domain.Pais;
 import com.bandManager.domain.Show;
 import com.bandManager.domain.Usuario;
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion.User;
 
 public class TesteUtil extends Dependencias{
 
@@ -219,7 +222,15 @@ public class TesteUtil extends Dependencias{
 
 	
 	
-	protected void utilVerificarAtributos(Usuario usuarioEsperado, Usuario usuario) {
+	protected void verificarAtributos(Usuario usuarioEsperado, Usuario usuario) {
+		assertNotNull(usuarioEsperado);
+		assertNotNull(usuario);
+		
+		assertEquals(usuarioEsperado.getUsername(), usuario.getUsername());
+		assertEquals(usuarioEsperado.getPassword(), usuario.getPassword());
+	}
+	
+	protected void verificarAtributos(UserDetails usuarioEsperado, UserDetails usuario) {
 		assertNotNull(usuarioEsperado);
 		assertNotNull(usuario);
 		

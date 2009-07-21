@@ -28,6 +28,7 @@ public class BandaCRUDAction extends Action {
 	
 	public String salvar(){
 		this.bandaFacade.salvar(this.banda);
+		this.adicionarMensagem("Banda salva com sucesso!");
 		return SUCCESS;
 	}
 	
@@ -38,17 +39,21 @@ public class BandaCRUDAction extends Action {
 			try {
 				this.banda = this.bandaFacade.recuperar(this.banda.getId());
 			} catch (ObjetoNaoEncontradoException e) {
+				this.adicionarErro("banda", "A banda não existe");
 				return ERROR;
 			}
 		}
 		else {
 			return ERROR;
 		}
+		
+		this.apresentarErrosEMensagens();
 		return SUCCESS;
 	}
 	
 	public String recuperarTodas(){
 		this.bandas = this.bandaFacade.recuperarTodas();
+		apresentarErrosEMensagens();
 		return SUCCESS;
 	}
 
@@ -60,10 +65,6 @@ public class BandaCRUDAction extends Action {
 
 	public void setBanda(Banda banda) {
 		this.banda = banda;
-	}
-
-	public IBandaFacade getBandaFacade() {
-		return bandaFacade;
 	}
 
 	public void setBandaFacade(IBandaFacade bandaFacade) {

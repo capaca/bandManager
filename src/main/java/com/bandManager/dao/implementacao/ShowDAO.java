@@ -35,7 +35,7 @@ public class ShowDAO implements IShowDAO {
 		return show;
 	}
 
-	public void excluir(int id) {
+	public void excluir(int id) throws ObjetoNaoEncontradoException {
 		Show show;
 		
 		try {
@@ -43,8 +43,7 @@ public class ShowDAO implements IShowDAO {
 			this.entityManager.remove(show);
 
 		} catch (ObjetoNaoEncontradoException e) {
-			System.err.println("Não foi possivel recuperar o show para exclusão.");
-			e.printStackTrace();
+			throw e;
 		}
 	}
 

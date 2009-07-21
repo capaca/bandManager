@@ -66,6 +66,21 @@ input, textarea {
 	text-align: center;
 }
 
+.barra{
+	background-color: #3E362E;
+	border:1px solid #837669;
+	color:#DBC6B1;
+	padding:4px;
+	cursor: pointer;
+}
+
+.sub_conteudo{
+	text-align: center;
+	border:1px solid #837669;
+	border-top: 0px;
+	padding: 10px 0px 10px 0px;
+}
+
 .errorMessage{
 	color: red;
 	font-size: 14px;
@@ -148,11 +163,22 @@ hr { display: none; }
 	color: #000000;
 }
 
-.sub_conteudo{
-	text-align: center;
-	margin-left: 30px;
-	border: 1px dashed #837669;
-	padding: 10px 0px 10px 0px;
+.actionMessage{
+	color: white;
+	font-size: 12px;
+	list-style: none;
+	background-color: #4BB65D;
+	border: 1px solid green;
+	padding-left: 5px;
+}
+
+.errorMessage{
+	color: white;
+	font-size: 12px;
+	list-style: none;
+	background-color: #B12020;
+	border: 1px solid red;
+	padding-left: 5px;
 }
 
 .img_perfil{

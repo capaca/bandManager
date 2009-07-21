@@ -20,9 +20,4 @@ public class Teste extends TesteUtil{
 		query.executeUpdate();
 		this.entityManager.getTransaction().commit();
 	}
-	
-	/*@Before
-	public void inicializarContexto(){
-		ActionContext.setContext(super.getActionContext());
-	}*/
 }

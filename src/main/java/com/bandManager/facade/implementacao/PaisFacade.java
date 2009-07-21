@@ -18,9 +18,7 @@ public class PaisFacade implements IPaisFacade{
 		return this.paisDAO.recuperarTodos();
 	}
 	
-	public IPaisDAO getPaisDAO() {
-		return paisDAO;
-	}
+	/*Getters and Setters*/
 
 	public void setPaisDAO(IPaisDAO paisDAO) {
 		this.paisDAO = paisDAO;

@@ -103,6 +103,19 @@ public class TesteBandaDAO extends Teste {
 	}
 	
 	@Test
+	public void erroRecuperarObjetoNaoEncontrado(){
+		
+		Banda banda = new Banda();
+		
+		try {
+			super.getBandaDAO().recuperar(banda.getId());
+			fail("Recuperou mas nao deveria");
+		} catch (ObjetoNaoEncontradoException e) {
+			//ok
+		}
+	}
+	
+	@Test
 	public void salvarBandaComReleaseLongo(){
 		//Cria a banda e seta o texto longo
 		Banda banda = utilCriarBanda();

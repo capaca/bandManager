@@ -15,26 +15,20 @@
 	    }); 
 	});
 
-	isShowAberto = true;
-
 	$(function() {
 		$("#tituloShows").click(function() {
-			if(isShowAberto){
-				$("#shows").hide('blind');
-				isShowAberto = false;
+			if($("#shows").css("display") == "none"){
+				$("#shows").slideDown();
 			}
 			else{
-				$("#shows").show('blind');
-				isShowAberto = true;
+				$("#shows").slideUp();
 			}
 		});
 	});
 </SCRIPT>
 
-<h2 id="tituloShows">
-	<span class="tituloClick">Shows</span>
-</h2>
-	
+<div id="tituloShows" class="barra">Shows</div>
+
 <div id="shows" class="sub_conteudo">
 	<s:if test="banda.shows.size() > 0">
 	<table id="tabelaShows" class="listagem" border="0" width="80%" align="center">

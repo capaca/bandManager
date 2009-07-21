@@ -29,12 +29,7 @@ public class UsuarioFacade implements IUsuarioFacade {
 	
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
 		try{
-			Usuario usuario = this.recuperar(username);
-			if(usuario == null){
-				throw new UsernameNotFoundException("Usuário ou senha inválidos.");
-			}
-			
-			return usuario;
+			return this.recuperar(username);
 		}
 		catch(NoResultException exception){
 			throw new UsernameNotFoundException("Usuário ou senha inválidos.");
@@ -52,9 +47,7 @@ public class UsuarioFacade implements IUsuarioFacade {
 		}
 	}
 
-	public IUsuarioDAO getUsuarioDAO() {
-		return usuarioDAO;
-	}
+	/*Getters and Setters*/
 
 	public void setUsuarioDAO(IUsuarioDAO usuarioDAO) {
 		this.usuarioDAO = usuarioDAO;
