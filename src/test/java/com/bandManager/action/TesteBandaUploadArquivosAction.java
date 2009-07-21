@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.bandManager.TesteUtil;
+import com.bandManager.domain.Arquivo;
 import com.bandManager.domain.Banda;
 import com.bandManager.exception.ObjetoNaoEncontradoException;
 import com.bandManager.util.FileUtil;
@@ -57,6 +58,60 @@ public class TesteBandaUploadArquivosAction extends TesteUtil {
 	}
 	
 	@Test
+	public void erroAdicionarLogoInvalido() throws ObjetoNaoEncontradoException{
+		//Logo não é uma imagem
+		this.logo = new File(PATH_SISTEMA+"/musica.mp3");
+		
+		//Verifica que o arquivo a ser transferido existe
+		assertTrue(this.logo.exists());
+		
+		//Seta os atributos para adicionar o logo
+		super.getBandaUploadArquivosAction().setBanda(banda);
+		super.getBandaUploadArquivosAction().setLogo(this.logo);
+		super.getBandaUploadArquivosAction().setLogoContentType("audio/mpeg");
+		super.getBandaUploadArquivosAction().setLogoFileName("logo.jpg");
+		
+		//Tenta adicionar
+		assertEquals(Action.ERROR, super.getBandaUploadArquivosAction().adicionarLogo());	
+	}
+	
+	@Test
+	public void erroAdicionarLogoNaoExistente() throws ObjetoNaoEncontradoException{
+		//Logo não existe
+		this.logo = new File(PATH_SISTEMA+"/logoNaoExistente.jpg");
+		
+		//Seta os atributos para adicionar o logo
+		super.getBandaUploadArquivosAction().setBanda(banda);
+		super.getBandaUploadArquivosAction().setLogo(this.logo);
+		super.getBandaUploadArquivosAction().setLogoContentType("image");
+		super.getBandaUploadArquivosAction().setLogoFileName("logo.jpg");
+		
+		//Tenta adicionar
+		assertEquals(Action.ERROR, super.getBandaUploadArquivosAction().adicionarLogo());	
+	}
+	
+	@Test
+	public void erroAdicionarLogoParaBandaNaoExistente() throws ObjetoNaoEncontradoException{
+		//Logo não existe
+		this.logo = new File(PATH_SISTEMA+"/logo.jpg");
+		
+		//Verifica que o arquivo a ser transferido existe
+		assertTrue(this.logo.exists());
+		
+		//Seta o id de uma banda não existente
+		this.banda.setId(20);
+		
+		//Seta os atributos para adicionar o logo
+		super.getBandaUploadArquivosAction().setBanda(banda);
+		super.getBandaUploadArquivosAction().setLogo(this.logo);
+		super.getBandaUploadArquivosAction().setLogoContentType("image");
+		super.getBandaUploadArquivosAction().setLogoFileName("logo.jpg");
+		
+		//Tenta adicionar
+		assertEquals(Action.ERROR, super.getBandaUploadArquivosAction().adicionarLogo());	
+	}
+	
+	@Test
 	public void excluirLogo() throws ObjetoNaoEncontradoException{
 		//Verifica que o arquivo a ser transferido existe
 		assertTrue(this.logo.exists());
@@ -79,6 +134,55 @@ public class TesteBandaUploadArquivosAction extends TesteUtil {
 		//Verifica que o arquivo foi deletado
 		File file2 = new File(FileUtil.getCaminhoSitema()+"/"+bandaRecuperada.getLogo().getCaminhoArquivo());
 		assertFalse(file2.exists());
+	}
+	
+	@Test
+	public void erroExcluirLogoNaoExistente() throws ObjetoNaoEncontradoException{
+		//Verifica que o arquivo a ser transferido existe
+		assertTrue(this.logo.exists());
+		
+		//Seta os atributos para adicionar o logo
+		super.getBandaUploadArquivosAction().setBanda(banda);
+		super.getBandaUploadArquivosAction().setLogo(this.logo);
+		super.getBandaUploadArquivosAction().setLogoContentType("image");
+		super.getBandaUploadArquivosAction().setLogoFileName("logo.jpg");
+		
+		//Adiciona o logo
+		assertEquals(Action.SUCCESS, super.getBandaUploadArquivosAction().adicionarLogo());
+		
+		//Recupera a banda
+		Banda bandaRecuperada = super.getBandaFacade().recuperar(this.banda.getId());
+		
+		//Exclui o logo
+		assertEquals(Action.SUCCESS, super.getBandaUploadArquivosAction().excluirLogo());
+		
+		//Verifica que o arquivo foi deletado
+		File file2 = new File(FileUtil.getCaminhoSitema()+"/"+bandaRecuperada.getLogo().getCaminhoArquivo());
+		assertFalse(file2.exists());
+		
+		this.banda.setLogo(new Arquivo("nome", "contentType", new File(""), "/"));
+		super.getBandaFacade().salvar(this.banda);
+		
+		//Exclui o logo
+		assertEquals(Action.ERROR, super.getBandaUploadArquivosAction().excluirLogo());
+	}
+	
+	@Test
+	public void erroExcluirLogoBandaNaoExistente() throws ObjetoNaoEncontradoException{
+		//Verifica que o arquivo a ser transferido existe
+		assertTrue(this.logo.exists());
+		
+		//Id de banda não existente
+		this.banda.setId(20);
+		
+		//Seta os atributos para adicionar o logo
+		super.getBandaUploadArquivosAction().setBanda(banda);
+		super.getBandaUploadArquivosAction().setLogo(this.logo);
+		super.getBandaUploadArquivosAction().setLogoContentType("image");
+		super.getBandaUploadArquivosAction().setLogoFileName("logo.jpg");
+		
+		//Exclui o logo
+		assertEquals(Action.ERROR, super.getBandaUploadArquivosAction().excluirLogo());
 	}
 	
 	@Test
@@ -109,7 +213,7 @@ public class TesteBandaUploadArquivosAction extends TesteUtil {
 	@Test
 	public void excluirFoto() throws ObjetoNaoEncontradoException{
 		//Verifica que o arquivo a ser transferido existe
-		assertTrue(this.logo.exists());
+		assertTrue(this.foto.exists());
 		
 		//Seta os atributos para adicionar o logo
 		super.getBandaUploadArquivosAction().setBanda(banda);
@@ -129,5 +233,38 @@ public class TesteBandaUploadArquivosAction extends TesteUtil {
 		//Verifica que o arquivo foi deletado
 		File file2 = new File(FileUtil.getCaminhoSitema()+"/"+bandaRecuperada.getFoto().getCaminhoArquivo());
 		assertFalse(file2.exists());
+	}
+	
+	@Test
+	public void erroExcluirFotoNaoExistente() throws ObjetoNaoEncontradoException{
+		
+		//Seta os atributos para adicionar o logo
+		super.getBandaUploadArquivosAction().setBanda(banda);
+		super.getBandaUploadArquivosAction().setFoto(this.foto);
+		super.getBandaUploadArquivosAction().setFotoContentType("image");
+		super.getBandaUploadArquivosAction().setFotoFileName("foto.jpg");
+		
+		this.banda.setFoto(new Arquivo("nome", "contentType", new File(""), "/"));
+		super.getBandaFacade().salvar(this.banda);
+		
+		//Tenta excluir a foto
+		assertEquals(Action.ERROR, super.getBandaUploadArquivosAction().excluirFoto());
+		
+	}
+	
+	@Test
+	public void erroExcluirFotoBandaNaoExistente() throws ObjetoNaoEncontradoException{
+
+		this.banda.setId(20);
+		
+		//Seta os atributos para adicionar o logo
+		super.getBandaUploadArquivosAction().setBanda(banda);
+		super.getBandaUploadArquivosAction().setFoto(this.foto);
+		super.getBandaUploadArquivosAction().setFotoContentType("image");
+		super.getBandaUploadArquivosAction().setFotoFileName("foto.jpg");
+		
+		//Tenta excluir a foto
+		assertEquals(Action.ERROR, super.getBandaUploadArquivosAction().excluirFoto());
+		
 	}
 }

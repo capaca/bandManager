@@ -75,23 +75,11 @@ public class BandaCRUDAction extends Action {
 		return paises;
 	}
 
-	public void setPaises(List<Pais> paises) {
-		this.paises = paises;
-	}
-
-	public IPaisFacade getPaisFacade() {
-		return paisFacade;
-	}
-
 	public void setPaisFacade(IPaisFacade paisFacade) {
 		this.paisFacade = paisFacade;
 	}
 
 	public List<Banda> getBandas() {
 		return bandas;
-	}
-
-	public void setBandas(List<Banda> bandas) {
-		this.bandas = bandas;
 	}
 }
